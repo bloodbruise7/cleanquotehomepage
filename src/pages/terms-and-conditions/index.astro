@@ -1,0 +1,249 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const LAST_UPDATED = 'March 19, 2026';
+const LOGO_URL =
+  'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6966ac3f075c93d04f0065ad/f52e9713f_file_00000000d788722f8d707c0fc8248d08.png';
+
+const sections = [
+  {
+    intro: `These Terms of Service ("Terms") are a binding agreement between CleanQuote LLC ("CleanQuote," "we," "us," or "our") and the person or entity accessing or using the Services ("Customer," "you," or "your").
+
+If you use the Services on behalf of a company or other legal entity, you represent and warrant that you have authority to bind that entity to these Terms. In that case, "you" and "your" refer to that entity.
+
+By accessing or using the Services, creating an account, starting a trial, clicking to accept these Terms, or otherwise using the Services, you agree to be bound by these Terms.`,
+  },
+  {
+    title: '1. Definitions',
+    body: `"Services" means CleanQuote's website, software, applications, tools, content, features, and related services, including quote generation, pricing tools, job-time estimation tools, customer management, invoicing, payment-related features, reporting, scheduling, time tracking, SMS and email communications, and related functionality made available by CleanQuote.
+
+"Customer Data" means information, data, records, text, images, files, payment-related records, communication logs, and other materials submitted to, stored in, transmitted through, or generated within the Services by or on behalf of Customer, excluding Usage Data and CleanQuote Materials.
+
+"CleanQuote Materials" means the Services, software, code, workflows, formulas, interfaces, templates, documentation, designs, trademarks, logos, and all related intellectual property owned by or licensed to CleanQuote.
+
+"Authorized Users" means employees, contractors, and agents authorized by Customer to use the Services under Customer's account.`,
+  },
+  {
+    title: '2. Eligibility and Business Use',
+    body: `The Services are intended for use by businesses and operators in the residential cleaning industry and related service businesses. You must be at least 18 years old and able to enter into a binding contract to use the Services.
+
+You are solely responsible for ensuring that your use of the Services complies with all laws, rules, and regulations applicable to your business, pricing, employment practices, customer communications, payment collection, tax handling, recordkeeping, and service operations.`,
+  },
+  {
+    title: '3. Changes to the Services and Terms',
+    body: `We may modify the Services from time to time, including by adding, removing, or changing features and functionality. We may also update these Terms from time to time. If we make material changes, we may provide notice by posting updated Terms, updating the "Last Updated" date, sending an email, or using another reasonable method. Your continued use of the Services after updated Terms become effective constitutes acceptance of the revised Terms.`,
+  },
+  {
+    title: '4. Accounts and Security',
+    body: `You must provide accurate, current, and complete information when creating an account and must keep that information updated.
+
+You are responsible for:
+
+• maintaining the confidentiality of your login credentials;
+• all activities that occur under your account;
+• ensuring that Authorized Users comply with these Terms; and
+• promptly notifying us of any unauthorized access, security incident, or misuse involving your account.`,
+  },
+  {
+    title: '5. Subscription Plans, Trial, Billing, and Renewal',
+    body: `CleanQuote offers subscription-based access to the Services. Unless otherwise stated in writing at the time of purchase, subscriptions are billed on a monthly basis and renew automatically each month until canceled.
+
+CleanQuote offers a 14-day free trial. During or after the trial, you may be required to select a subscription plan and provide payment information through the checkout flow then in effect. If you do not cancel before the trial ends and proceed with the paid subscription flow, your selected monthly subscription will begin and your payment method will be charged according to the pricing and billing terms presented at checkout.
+
+By purchasing a subscription, you authorize CleanQuote and its third-party payment processor to charge your payment method for all applicable subscription fees, taxes, add-ons, user fees, overages, transaction-related charges, and other charges associated with your account.
+
+• subscriptions renew automatically on a monthly basis;
+• charges are billed in advance for each monthly billing period;
+• all fees are non-refundable;
+• partial months are not refunded or credited; and
+• pricing may change prospectively upon prior notice.`,
+  },
+  {
+    title: '6. Cancellation',
+    body: `You may cancel your subscription through the applicable Stripe-managed billing portal or other billing interface we make available to you.
+
+Unless otherwise required by law or expressly stated at checkout, cancellation stops future renewals only, does not entitle you to a refund for the current billing period or any prior charges, and your access will continue through the end of the current paid billing period unless we specify otherwise. You are responsible for canceling before your next renewal date if you do not want the subscription to renew.`,
+  },
+  {
+    title: '7. Taxes',
+    body: `Fees do not include any sales, use, VAT, GST, withholding, or similar taxes, duties, or governmental assessments, except taxes based on our net income. You are responsible for all taxes associated with your purchase and use of the Services.`,
+  },
+  {
+    title: '8. No Guarantee of Quotes, Estimates, or Business Results',
+    body: `CleanQuote provides tools intended to assist businesses with quoting, pricing consistency, job-time estimation, invoicing, customer management, communications, payment collection, and operations.
+
+You acknowledge and agree that any quotes, suggested prices, job-time estimates, productivity metrics, reports, or recommendations generated by the Services are informational tools only; outputs depend on data, assumptions, settings, labor inputs, and other information provided by you or your users; outputs may be incomplete, inaccurate, or unsuitable for a particular job or customer; and you are solely responsible for reviewing, approving, editing, sending, and relying on any quote, estimate, invoice, schedule, pricing decision, communication, payment request, or operational decision.
+
+CleanQuote does not guarantee quote accuracy, profitability, legal compliance, tax treatment, customer conversion, employee performance, market acceptance, payment collection, or any business outcome.`,
+  },
+  {
+    title: '9. Customer Data; License to Process',
+    body: `As between the parties, Customer retains ownership of Customer Data. Customer grants CleanQuote a worldwide, non-exclusive, limited license to host, store, copy, transmit, display, modify, and otherwise process Customer Data solely as necessary to provide, maintain, support, secure, improve, and develop the Services, enforce these Terms, comply with law, process payments, transmit customer communications, and exercise our rights hereunder.
+
+You represent and warrant that you own or have all rights necessary to provide Customer Data to us, that your collection and use of Customer Data complies with applicable law and your own privacy notices and agreements, and that Customer Data does not infringe, misappropriate, or violate any third-party rights.`,
+  },
+  {
+    title: '10. Usage Data and Aggregated Data',
+    body: `We may collect and generate technical logs, metadata, analytics, usage statistics, and de-identified or aggregated data relating to use of the Services ("Usage Data"). We may use Usage Data to operate, secure, monitor, analyze, improve, support, and develop the Services, and for other lawful business purposes, provided that we do not publicly disclose Customer-specific information in a manner that reasonably identifies Customer without permission.`,
+  },
+  {
+    title: '11. Privacy',
+    body: `Our collection and use of personal information is described in the CleanQuote Privacy Policy, which is incorporated by reference into these Terms. If there is a conflict between these Terms and the Privacy Policy regarding personal information handling, the Privacy Policy controls with respect to those practices.`,
+  },
+  {
+    title: '12. Communications',
+    body: `You authorize us to send you service-related, transactional, and account communications electronically, including by email, in-app notice, SMS, or other contact methods you provide, where permitted by law.
+
+You are solely responsible for any messages, emails, texts, reminders, invoices, notifications, or other communications you send to your customers, leads, workers, or contacts using the Services, including compliance with applicable consent, telemarketing, texting, email, privacy, and recordkeeping laws. You are responsible for obtaining any legally required consents from your customers and contacts before sending communications through the Services.`,
+  },
+  {
+    title: '13. Third-Party Services and Payment Processing',
+    body: `The Services may integrate with or enable access to third-party services, including Stripe, communication tools, accounting tools, calendar tools, email providers, SMS providers, and other platforms ("Third-Party Services").
+
+Your use of Third-Party Services is governed by the terms and policies of those third parties, not these Terms. CleanQuote is not responsible for Third-Party Services, including their availability, uptime, legality, security, processing errors, outages, chargebacks, disputes, payout timing, or data practices.
+
+If you use payment processing features through CleanQuote, you may be required to enter into separate agreements with the applicable payment processor. CleanQuote is not a bank, money transmitter, payment processor, or merchant acquirer. You are solely responsible for your relationship with your customers, including fulfillment, refunds, customer disputes, chargebacks, taxes, and compliance obligations relating to payments you collect.`,
+  },
+  {
+    title: '14. Acceptable Use',
+    body: `You agree not to, and not to permit others to:
+
+• copy, modify, distribute, sell, lease, sublicense, or commercially exploit the Services except as expressly permitted;
+• reverse engineer, decompile, disassemble, or attempt to derive source code or underlying algorithms, except to the extent prohibited by law;
+• access or use the Services to build a competing product or service;
+• use the Services for unlawful, fraudulent, deceptive, abusive, or infringing purposes;
+• upload or transmit malware, malicious code, or harmful content;
+• interfere with or disrupt the integrity, security, or performance of the Services;
+• circumvent user limits, subscription limits, access restrictions, or security measures; or
+• use the Services in a way that violates any law or third-party right.`,
+  },
+  {
+    title: '15. Suspension and Termination',
+    body: `We may suspend or terminate access to all or part of the Services immediately, with or without notice, if you breach these Terms, your payment is overdue, your use creates a security risk, legal risk, or operational risk, we are required to do so by law or by a third-party service provider, or continued provision of the Services is no longer commercially reasonable.
+
+You may stop using the Services at any time. Sections that by their nature should survive termination will survive, including those related to fees, intellectual property, disclaimers, limitations of liability, indemnification, dispute resolution, and accrued rights.`,
+  },
+  {
+    title: '16. Data Retention and Deletion',
+    body: `During an active subscription, Customer Data may be available through the functionality of the Services. After cancellation or termination, we may retain Customer Data for a commercially reasonable period for backup, compliance, tax, fraud prevention, security, audit, dispute resolution, payment reconciliation, or legal purposes, after which we may delete it in accordance with our retention practices unless a longer retention period is required by law.
+
+We are not obligated to retain Customer Data indefinitely after termination.`,
+  },
+  {
+    title: '17. Intellectual Property',
+    body: `CleanQuote and its licensors retain all right, title, and interest in and to the CleanQuote Materials and all related intellectual property rights. No rights are granted except as expressly stated in these Terms.
+
+Subject to these Terms and payment of applicable fees, CleanQuote grants Customer a limited, non-exclusive, non-transferable, non-sublicensable right during the subscription term to access and use the Services for Customer's internal business operations.`,
+  },
+  {
+    title: '18. Feedback',
+    body: `If you provide ideas, suggestions, enhancement requests, comments, testimonials, or other feedback regarding the Services ("Feedback"), you grant CleanQuote a worldwide, perpetual, irrevocable, royalty-free, fully paid, transferable, and sublicensable right to use, reproduce, modify, distribute, and exploit that Feedback for any lawful purpose without restriction or compensation.`,
+  },
+  {
+    title: '19. Beta Features',
+    body: `We may offer preview, beta, early-access, or experimental features. Beta features may be modified, suspended, or discontinued at any time and may be subject to additional terms. Beta features are provided "as is" and may not be as reliable or secure as production features.`,
+  },
+  {
+    title: '20. Disclaimer of Warranties',
+    body: `TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE." CLEANQUOTE DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, QUIET ENJOYMENT, ACCURACY, RELIABILITY, OR THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE.
+
+WITHOUT LIMITING THE FOREGOING, CLEANQUOTE DOES NOT WARRANT THAT ANY QUOTE, ESTIMATE, PRICE, JOB-TIME CALCULATION, REPORT, PAYMENT FLOW, INVOICE, COMMUNICATION, INTEGRATION, OR OUTPUT WILL BE CORRECT, COMPLETE, COMPLIANT, ENFORCEABLE, OR SUITABLE FOR YOUR BUSINESS.`,
+  },
+  {
+    title: '21. Limitation of Liability',
+    body: `TO THE MAXIMUM EXTENT PERMITTED BY LAW, CLEANQUOTE AND ITS AFFILIATES, LICENSORS, SERVICE PROVIDERS, AND THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, GOODWILL, DATA, BUSINESS OPPORTUNITY, CUSTOMERS, OR ANTICIPATED SAVINGS, ARISING OUT OF OR RELATING TO THE SERVICES OR THESE TERMS, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, CLEANQUOTE'S TOTAL AGGREGATE LIABILITY ARISING OUT OF OR RELATING TO THE SERVICES OR THESE TERMS WILL NOT EXCEED THE GREATER OF: (A) THE AMOUNTS PAID BY CUSTOMER TO CLEANQUOTE FOR THE SERVICES IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM; OR (B) ONE HUNDRED U.S. DOLLARS (US $100).
+
+THESE LIMITATIONS APPLY REGARDLESS OF THE FORM OF ACTION AND EVEN IF A REMEDY FAILS OF ITS ESSENTIAL PURPOSE.`,
+  },
+  {
+    title: '22. Indemnification',
+    body: `You will defend, indemnify, and hold harmless CleanQuote and its affiliates, licensors, service providers, and their respective officers, directors, employees, and agents from and against any third-party claims, actions, proceedings, damages, liabilities, losses, judgments, settlements, penalties, fines, costs, and expenses, including reasonable attorneys' fees, arising out of or relating to your or your Authorized Users' use of the Services, Customer Data, your quotes, invoices, communications, pricing, payment collection, marketing, refunds, chargebacks, customer disputes, your violation of these Terms, or your violation of any law or third-party right.`,
+  },
+  {
+    title: '23. Confidentiality',
+    body: `Each party receiving non-public information from the other party that is designated confidential or that reasonably should be understood to be confidential ("Confidential Information") will use it only as necessary to perform under these Terms and will not disclose it except to personnel, contractors, advisors, or service providers who have a need to know and are bound by confidentiality obligations.
+
+Confidential Information does not include information that becomes public through no fault of the receiving party, was already lawfully known, is independently developed without use of the other party's information, or is lawfully obtained from a third party without restriction.`,
+  },
+  {
+    title: '24. Dispute Resolution; Binding Arbitration; Class Action Waiver',
+    body: `PLEASE READ THIS SECTION CAREFULLY. IT REQUIRES MOST DISPUTES TO BE RESOLVED BY FINAL AND BINDING INDIVIDUAL ARBITRATION AND NOT IN COURT.
+
+Any dispute, claim, or controversy arising out of or relating to these Terms or the Services will be resolved by binding individual arbitration administered by the American Arbitration Association ("AAA") under its Commercial Arbitration Rules then in effect, except that either party may bring an individual action in small claims court if the claim qualifies and remains on an individual basis.
+
+The seat of the arbitration will be Sacramento County, California. The arbitration may be conducted remotely, in person in Sacramento County, California, or in another manner permitted by the AAA rules and the arbitrator. The arbitrator will have exclusive authority to resolve any dispute relating to the interpretation, applicability, enforceability, or formation of this arbitration provision, except that a court of competent jurisdiction may decide issues relating to the enforceability of the class action waiver below.
+
+YOU AND CLEANQUOTE AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN AN INDIVIDUAL CAPACITY AND NOT AS A PLAINTIFF, CLAIMANT, OR CLASS MEMBER IN ANY PURPORTED CLASS, COLLECTIVE, CONSOLIDATED, PRIVATE ATTORNEY GENERAL, OR REPRESENTATIVE PROCEEDING. The arbitrator may not consolidate more than one person's claims and may not otherwise preside over any form of representative or class proceeding.
+
+Nothing in this section prevents either party from seeking temporary, preliminary, or injunctive relief in the state or federal courts located in Sacramento County, California, for misuse of intellectual property, Confidential Information, or unauthorized access to the Services. Subject to the arbitration requirement above, the Federal Arbitration Act governs the interpretation and enforcement of this section.`,
+  },
+  {
+    title: '25. Governing Law',
+    body: `These Terms are governed by the laws of the State of California, without regard to conflict-of-laws principles. Subject to Section 24, any court proceeding permitted under these Terms will be brought exclusively in the state or federal courts located in Sacramento County, California, and each party consents to personal jurisdiction and venue there.`,
+  },
+  {
+    title: '26. Injunctive Relief',
+    body: `You acknowledge that a breach of the provisions relating to intellectual property, confidentiality, security, or use restrictions may cause irreparable harm for which monetary damages may be inadequate. CleanQuote may seek injunctive or equitable relief in any court of competent jurisdiction as permitted by these Terms.`,
+  },
+  {
+    title: '27. Miscellaneous',
+    body: `These Terms, together with any pricing page, order form, checkout disclosures, plan terms, and Privacy Policy, constitute the entire agreement between you and CleanQuote regarding the Services and supersede all prior or contemporaneous understandings relating to the Services.
+
+You may not assign or transfer these Terms without our prior written consent, except in connection with a merger, acquisition, or sale of substantially all assets. We may assign these Terms without restriction.
+
+If any provision of these Terms is held unenforceable, that provision will be enforced to the maximum extent permitted and the remaining provisions will remain in effect.
+
+No waiver is effective unless in writing. A party's failure to enforce any provision is not a waiver.
+
+These Terms do not create a partnership, franchise, joint venture, agency, fiduciary, or employment relationship between the parties.`,
+  },
+  {
+    title: '28. Contact Information',
+    body: `CleanQuote LLC may be contacted regarding these Terms at info@thecleanquote.com. By your request, these Terms do not include a public mailing address. Notices to CleanQuote under these Terms must be sent by email to info@thecleanquote.com unless CleanQuote designates a different notice method in writing.`,
+  },
+];
+---
+
+<Layout
+  title="Terms of Service — CleanQuote"
+  description="The binding Terms of Service between CleanQuote LLC and the person or entity accessing or using the CleanQuote Services."
+  canonical="https://thecleanquote.com/terms-and-conditions/"
+  ogTitle="Terms of Service — CleanQuote"
+  ogDescription="The binding Terms of Service between CleanQuote LLC and the person or entity accessing or using the CleanQuote Services."
+  ogUrl="https://thecleanquote.com/terms-and-conditions/"
+>
+  <div class="min-h-screen bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-12">
+      <div class="flex justify-center mb-10">
+        <a href="/">
+          <img src={LOGO_URL} alt="CleanQuote" class="h-16 w-auto" />
+        </a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 text-center mb-2">Terms of Service</h1>
+      <p class="text-sm text-gray-500 text-center mb-10">Last Updated: {LAST_UPDATED}</p>
+
+      <div class="space-y-8">
+        {sections.map((section) => (
+          <div>
+            {section.intro && (
+              <p class="text-gray-700 leading-relaxed whitespace-pre-line">{section.intro}</p>
+            )}
+            {section.title && (
+              <h2 class="text-xl font-semibold text-gray-900 mb-3">{section.title}</h2>
+            )}
+            {section.body && (
+              <p class="text-gray-700 leading-relaxed whitespace-pre-line">{section.body}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-gray-200 text-center">
+        <p class="text-sm text-gray-400">© 2026 CleanQuote LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</Layout>

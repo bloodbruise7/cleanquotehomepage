@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const LOGO_URL =
+  'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6966ac3f075c93d04f0065ad/f52e9713f_file_00000000d788722f8d707c0fc8248d08.png';
+---
+
+<Layout
+  title="SMS Consent & Messaging Policy — CleanQuote"
+  description="How CleanQuote-powered residential cleaning businesses collect SMS consent and what messages clients may receive."
+  canonical="https://thecleanquote.com/sms-consent/"
+  ogTitle="SMS Consent & Messaging Policy — CleanQuote"
+  ogDescription="How CleanQuote-powered residential cleaning businesses collect SMS consent and what messages clients may receive."
+  ogUrl="https://thecleanquote.com/sms-consent/"
+>
+  <div class="min-h-screen bg-white">
+    <div class="max-w-2xl mx-auto px-6 py-16">
+      <div class="flex justify-center mb-10">
+        <a href="/">
+          <img src={LOGO_URL} alt="CleanQuote" class="h-16 w-auto" />
+        </a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-8">SMS Consent & Messaging Policy</h1>
+
+      <div class="space-y-6 text-gray-700 leading-relaxed">
+        <p>
+          CleanQuote enables residential cleaning businesses to communicate with their clients via SMS. CleanQuote is the messaging platform; the sender of each message is the individual cleaning business, and the recipient is that business's own client, with whom the business has an active service relationship.
+        </p>
+
+        <div>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">How Consent Is Collected</h2>
+          <p class="mb-3">
+            Clients provide consent to receive SMS messages from a CleanQuote-powered cleaning business through one of the following methods:
+          </p>
+          <ul class="list-disc pl-6 space-y-3">
+            <li>
+              <strong>At the time of estimate or booking:</strong> When providing a mobile phone number to a CleanQuote-powered cleaning business through the business's booking or estimate request process, clients agree to receive service-related text messages.
+            </li>
+            <li>
+              <strong>Verbally at service initiation:</strong> Clients may provide consent verbally when they request service. In this case, the cleaning business uses the following standardized script:
+              <blockquote class="mt-2 mb-2 border-l-4 border-gray-300 pl-4 italic text-gray-600">
+                "Before we finish — I'd like to send your estimate and appointment updates by text from [Business Name]. You'd get messages like your estimate, approval requests, invoices, and reminders — only about your service, usually a few per job. Message and data rates may apply, and you can reply STOP anytime to opt out. Is it okay if I text you at this number?"
+              </blockquote>
+              The business proceeds only after the client affirmatively agrees.
+            </li>
+          </ul>
+          <p class="mt-4">
+            In both cases, the cleaning business must confirm in the CleanQuote platform that consent was obtained before SMS messaging can be enabled for that client. This confirmation is recorded with a date and time stamp. Consent to receive SMS messages is never a condition of purchasing any product or service.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">What Messages You May Receive</h2>
+          <p>
+            Service-related messages may include estimate notifications and approval requests, appointment confirmations and reminders, invoice delivery, and post-service follow-up. These messages are transactional only. No marketing or promotional messages are sent.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Disclosure</h2>
+          <p class="mb-3">
+            Message and data rates may apply. Message frequency varies based on service activity. Mobile phone numbers are not sold or shared with third parties, and mobile opt-in data is not shared with third parties or affiliates for their marketing purposes.
+          </p>
+          <p class="mb-3">
+            Reply <strong>STOP</strong> at any time to opt out. Reply <strong>HELP</strong> for assistance.
+          </p>
+          <p>
+            For questions about how your information is used, see the CleanQuote{' '}
+            <a href="/privacy-policy/" class="text-blue-600 underline hover:text-blue-800">Privacy Policy</a>{' '}
+            and{' '}
+            <a href="/terms-and-conditions/" class="text-blue-600 underline hover:text-blue-800">Terms of Service</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-gray-200 text-center">
+        <p class="text-sm text-gray-400">© 2026 CleanQuote LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</Layout>

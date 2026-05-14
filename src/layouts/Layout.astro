@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogUrl?: string;
+}
+
+const {
+  title,
+  description = 'CleanQuote is the only system built specifically for residential cleaning businesses. Consistent quotes, accurate job timing, time tracking, invoicing, Stripe payments, and a recalibration engine that learns from your data.',
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogUrl,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {ogTitle && <meta property="og:title" content={ogTitle} />}
+    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    <meta property="og:type" content="website" />
+    {ogUrl && <meta property="og:url" content={ogUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    {ogTitle && <meta name="twitter:title" content={ogTitle} />}
+    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6966ac3f075c93d04f0065ad/f52e9713f_file_00000000d788722f8d707c0fc8248d08.png"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="font-sans">
+    <slot />
+  </body>
+</html>
