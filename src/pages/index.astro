@@ -1,0 +1,584 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const LOGIN_URL = 'https://app.thecleanquote.com/login';
+const LOGO_URL =
+  'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6966ac3f075c93d04f0065ad/f52e9713f_file_00000000d788722f8d707c0fc8248d08.png';
+
+const problems = [
+  {
+    icon: '📉',
+    title: 'Inconsistent Pricing',
+    body: 'You quote the same size home differently depending on the day, the client, or your mood. Margins swing on feel instead of math.',
+  },
+  {
+    icon: '⏱️',
+    title: 'Jobs That Run Over',
+    body: 'A job quoted for two hours takes three. Your cleaner goes unpaid or you eat the cost. Either way, the profit you planned for vanishes.',
+  },
+  {
+    icon: '📅',
+    title: 'Schedules That Break',
+    body: "When you don't know accurately how long jobs take, every day is a gamble. Overruns cascade — your team ends up overworked or underutilized.",
+  },
+];
+
+const solutions = [
+  {
+    n: '1',
+    title: 'Consistent Scope',
+    body: 'Every quote starts from the same foundation — square footage, bedrooms, bathrooms, soil level, pets, and add-ons. No more quoting a 2,200 sqft home differently on a Tuesday than a Friday.',
+  },
+  {
+    n: '2',
+    title: 'Consistent Pricing',
+    body: 'Your target hourly rate is baked into every calculation. The math is the same every time, which means your margins are protected by the system — not by memory.',
+  },
+  {
+    n: '3',
+    title: 'Consistent Job Timing',
+    body: 'CleanQuote estimates how long every job should take before your cleaner walks in the door. Fewer overruns. Fewer unpaid hours. A schedule you can actually plan around.',
+  },
+];
+
+const stats = [
+  { num: '35–40%', label: 'Profit margins of real cleaning businesses that informed our pricing logic', orange: true },
+  { num: '100%', label: 'Built for residential cleaning — nothing else', orange: false },
+  { num: 'Smarter', label: 'Gets more accurate with every job you complete', orange: true },
+  { num: '14 days', label: 'Free trial — no credit card required', orange: false },
+];
+
+const calculatorBullets = [
+  'Square footage, beds, baths, soil level, pets — all factored in automatically',
+  'Quote Confidence score shows how reliable the estimate is based on available data',
+  'Your target hourly rate drives every number — margins protected by default',
+  'Send the quote to your client by text or email directly from the app',
+];
+
+const engineSteps = [
+  { label: 'You complete jobs.', body: 'Your team tracks actual time — per visit, per house.' },
+  { label: 'CleanQuote compares.', body: 'Estimated job duration vs. actual hours across every service type.' },
+  { label: 'The engine adjusts.', body: 'If your team consistently runs faster or slower than predicted, estimates recalibrate automatically.' },
+  { label: 'Your business teaches it.', body: 'Over time, CleanQuote stops sounding like a generic tool and starts knowing your business — because it does.' },
+];
+
+const features = [
+  { icon: '🧮', title: 'Smart Calculator', body: 'Generate accurate job time estimates and pricing in seconds based on real property variables, not guesswork.' },
+  { icon: '🔄', title: 'Recalibration Engine', body: "Estimates automatically improve over time using your own business's actual job data." },
+  { icon: '👥', title: 'Client Management', body: 'Store client info, cleaning preferences, quote history, and job records — all in one place.' },
+  { icon: '📄', title: 'Professional Quotes', body: 'Send branded quotes via text or email. Track approvals, declines, and decline reasons.' },
+  { icon: '📅', title: 'Job & Visit Scheduling', body: "Schedule recurring jobs and individual visits. Know what's coming and how long everything should take." },
+  { icon: '⏱️', title: 'Time Tracking', body: 'Track employee clock-ins, breaks, lunches, and time per house. Timesheets that feed the engine.' },
+  { icon: '💳', title: 'Invoicing', body: 'Create and send professional invoices directly from CleanQuote. No separate billing tool needed.' },
+  { icon: '💰', title: 'Stripe Payments', body: 'Accept credit card payments from your clients through CleanQuote. Get paid faster with less friction.' },
+  { icon: '📊', title: 'Reports & Insights', body: 'Track conversion rates, see why quotes get declined, and monitor your business performance over time.' },
+];
+
+const timesheetBullets = [
+  'Track general work time, breaks, and lunches separately',
+  'Log time per individual property — not just per day',
+  "See today's scheduled visits and actual vs. estimated time at a glance",
+  'Real-world hours make the pricing engine smarter over time',
+];
+
+const soloFeatures = [
+  '1 user',
+  'Smart calculator + quoting',
+  'Client management',
+  'Invoicing + Stripe payments',
+  'Time tracking + job tracking',
+  'Recalibration engine',
+];
+
+const teamFeatures = [
+  'Up to 5 users',
+  'Everything in Solo',
+  'Multi-user timesheets',
+  'Team scheduling',
+  'Staff time tracking per job',
+  'Priority support',
+];
+---
+
+<Layout
+  title="CleanQuote — The Smarter Way to Price, Schedule & Run Your Cleaning Business"
+  description="CleanQuote is the only system built specifically for residential cleaning businesses. Consistent quotes, accurate job timing, time tracking, invoicing, Stripe payments, and a recalibration engine that learns from your data. Start your 14-day free trial — no credit card required."
+  canonical="https://thecleanquote.com/"
+  ogTitle="CleanQuote — Built for Residential Cleaning Businesses"
+  ogDescription="Stop guessing. Start running numbers. Consistent pricing, accurate job timing, and a system that gets smarter the more you use it."
+  ogUrl="https://thecleanquote.com/"
+>
+  <div class="min-h-screen bg-white font-sans overflow-x-hidden">
+    {/* ── NAV ── */}
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 h-16 flex items-center justify-between px-6 md:px-10">
+      <a href="/" aria-label="CleanQuote home">
+        <img src={LOGO_URL} alt="CleanQuote" class="h-10 w-auto object-contain" />
+      </a>
+      <div class="flex items-center gap-3">
+        <a
+          href={LOGIN_URL}
+          class="text-sm font-semibold text-[#1a2e5a] border-2 border-[#1a2e5a] rounded-lg px-4 py-1.5 hover:bg-[#1a2e5a] hover:text-white transition-colors"
+        >
+          Log In
+        </a>
+        <a
+          href={LOGIN_URL}
+          class="hidden sm:inline-flex text-sm font-semibold bg-[#FF8C00] text-white rounded-lg px-4 py-1.5 hover:bg-orange-700 transition-colors"
+        >
+          Start Free Trial
+        </a>
+      </div>
+    </nav>
+
+    {/* ── HERO ── */}
+    <section
+      class="pt-16"
+      style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 55%, #243660 100%);"
+    >
+      <div class="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+        {/* Copy */}
+        <div>
+          <div class="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/40 rounded-full px-4 py-1.5 text-xs font-semibold text-orange-300 uppercase tracking-widest mb-6">
+            <span>📋</span> Built for Residential Cleaning Businesses
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-5">
+            Stop Guessing.<br />
+            <span style="color: #FF8C00;">Start Running Numbers.</span>
+          </h1>
+
+          <p class="text-lg text-white/75 leading-relaxed mb-8 font-light">
+            CleanQuote gives your cleaning business a consistent system for pricing every job,
+            timing every visit, and tracking every hour — so your margins stop being a mystery.
+          </p>
+
+          <a
+            href={LOGIN_URL}
+            class="inline-flex items-center gap-2 text-white font-bold text-base rounded-xl px-7 py-3.5 transition-all hover:-translate-y-0.5 hover:shadow-lg bg-[#FF8C00] hover:bg-[#c96a00]"
+          >
+            Start Your 14-Day Free Trial →
+          </a>
+
+          <div class="flex flex-wrap gap-4 mt-4 text-sm text-white/50">
+            <span>✓ No credit card required</span>
+            <span>✓ No contracts</span>
+            <span>✓ Cancel anytime</span>
+          </div>
+        </div>
+
+        {/* Screenshot + confidence badge */}
+        <div class="relative">
+          <div class="absolute -top-5 right-0 z-10 bg-white rounded-2xl px-4 py-3 shadow-2xl flex items-center gap-3">
+            <div class="relative w-14 h-14 flex-shrink-0">
+              <svg viewBox="0 0 56 56" class="w-14 h-14 -rotate-90">
+                <circle cx="28" cy="28" r="22" fill="none" stroke="#e5e7eb" stroke-width="5" />
+                <circle
+                  cx="28"
+                  cy="28"
+                  r="22"
+                  fill="none"
+                  stroke="#22a06b"
+                  stroke-width="5"
+                  stroke-linecap="round"
+                  stroke-dasharray="123 138"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center text-sm font-extrabold text-green-600">91%</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-gray-800">Quote Confidence</div>
+              <div class="text-xs text-green-600 font-semibold">Excellent confidence</div>
+            </div>
+          </div>
+
+          <div
+            class="rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+            style="transform: perspective(1000px) rotateY(-3deg) rotateX(2deg);"
+          >
+            <img
+              src="/images/calc-desktop.jpg"
+              alt="CleanQuote residential pricing calculator showing square footage input, property details, and job time estimate"
+              class="w-full block"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Wave */}
+      <svg
+        viewBox="0 0 1440 56"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        class="w-full block"
+      >
+        <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#f7f9ff" />
+      </svg>
+    </section>
+
+    {/* ── STATS BAR ── */}
+    <section class="bg-[#f7f9ff] border-b border-gray-200 py-6 px-6">
+      <div class="max-w-5xl mx-auto flex flex-wrap justify-center gap-8 md:gap-12">
+        {stats.map((s) => (
+          <div class="text-center">
+            <div
+              class="text-2xl font-extrabold"
+              style={`color: ${s.orange ? '#FF8C00' : '#1a2e5a'};`}
+            >
+              {s.num}
+            </div>
+            <div class="text-xs text-gray-500 mt-1 max-w-[160px] leading-snug">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* ── PROBLEM ── */}
+    <section class="bg-white py-20 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+          The Problem
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
+          If You're Quoting From Feel,<br />You're Leaking Money
+        </h2>
+        <p class="text-gray-500 text-base max-w-xl leading-relaxed mb-12">
+          Most cleaning businesses quote jobs the same way they started — gut feel, rough math,
+          or copying what seemed to work before. It works until it doesn't.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          {problems.map((c) => (
+            <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl p-6 relative overflow-hidden">
+              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF8C00] to-orange-300"></div>
+              <div class="text-3xl mb-3">{c.icon}</div>
+              <h3 class="font-bold text-[#1a2e5a] text-base mb-2">{c.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{c.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── SOLUTION ── */}
+    <section class="py-20 px-6" style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 100%);">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+          The Solution
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+          Consistency Isn't Luck.<br />It's a System.
+        </h2>
+        <p class="text-white/65 text-base max-w-xl leading-relaxed mb-12">
+          CleanQuote replaces guesswork with a pricing and timing system built specifically for
+          residential cleaning — so every quote follows the same math, every time.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-5 mb-8">
+          {solutions.map((c) => (
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+              <div
+                class="w-9 h-9 rounded-full flex items-center justify-center text-white font-extrabold text-sm mb-4"
+                style="background: #FF8C00;"
+              >
+                {c.n}
+              </div>
+              <h3 class="font-bold text-white text-base mb-2">{c.title}</h3>
+              <p class="text-white/60 text-sm leading-relaxed">{c.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Outcome callout */}
+        <div class="bg-orange-500/10 border border-orange-400/30 rounded-2xl p-6 flex items-start gap-5">
+          <div class="text-4xl flex-shrink-0">📈</div>
+          <div>
+            <h3 class="font-bold text-orange-300 text-base mb-1">The Result: Margins You Can Count On</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              When pricing is consistent and job timing is accurate, profit margins stop being a mystery.
+              You stop absorbing losses you didn't see coming. And scheduling becomes something you
+              plan — not something you survive.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CALCULATOR ── */}
+    <section class="bg-[#f7f9ff] py-20 px-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+        <div>
+          <div class="inline-block bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+            The Calculator
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
+            A Quote in Seconds.<br />Built on Real Math.
+          </h2>
+          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+            Enter a home's square footage, bedrooms, bathrooms, soil level, and any extras. CleanQuote
+            instantly calculates an accurate job time estimate and a quote price tied directly to your
+            target hourly rate.
+          </p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            No spreadsheets. No memory. No guessing. The same variables go in every time — and the
+            same quality of math comes out.
+          </p>
+
+          <ul class="space-y-3">
+            {calculatorBullets.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <span
+                  class="w-2 h-2 rounded-full flex-shrink-0 mt-1.5"
+                  style="background: #FF8C00;"
+                ></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+          <img
+            src="/images/calc-mobile.jpg"
+            alt="CleanQuote mobile calculator showing residential pricing inputs"
+            class="w-full block"
+          />
+        </div>
+      </div>
+    </section>
+
+    {/* ── ENGINE ── */}
+    <section class="bg-white py-20 px-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+          <img
+            src="/images/dashboard.jpg"
+            alt="CleanQuote dashboard showing Pricing Engine warming up with progress toward first calibration"
+            class="w-full block"
+          />
+        </div>
+
+        <div>
+          <div class="inline-block bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+            The Recalibration Engine
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
+            It Starts Smart.<br />It Gets Smarter.
+          </h2>
+          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+            CleanQuote's pricing foundation was built using real-world data from multiple cleaning
+            businesses — all operating with profit margins between 35–40%. That's the baseline every
+            account starts from on day one.
+          </p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            But what makes CleanQuote different from any other tool is what happens after you start using it.
+          </p>
+
+          <ol class="space-y-4 mb-6">
+            {engineSteps.map((step, i) => (
+              <li class="flex items-start gap-3">
+                <span class="w-7 h-7 rounded-full bg-blue-50 text-[#1a2e5a] font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span class="text-sm text-gray-700 leading-relaxed">
+                  <strong class="text-[#1a2e5a]">{step.label}</strong> {step.body}
+                </span>
+              </li>
+            ))}
+          </ol>
+
+          <div class="border-l-4 border-blue-400 bg-blue-50 rounded-r-xl px-4 py-3 text-sm text-[#1a2e5a] italic leading-relaxed">
+            "The more jobs you complete and log actual hours for, the smarter it gets."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FEATURES GRID ── */}
+    <section class="bg-[#f7f9ff] py-20 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+          Everything Included
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-3 leading-tight">
+          One System for Your<br />Whole Operation
+        </h2>
+        <p class="text-gray-500 text-base max-w-xl leading-relaxed mb-12">
+          CleanQuote handles quoting, scheduling, time tracking, invoicing, and payments —
+          designed specifically for how residential cleaning businesses actually work.
+        </p>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {features.map((f) => (
+            <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <div class="text-2xl mb-3">{f.icon}</div>
+              <h3 class="font-bold text-[#1a2e5a] text-sm mb-1.5">{f.title}</h3>
+              <p class="text-gray-500 text-xs leading-relaxed">{f.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── TIMESHEETS ── */}
+    <section class="bg-white py-20 px-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+        <div>
+          <div class="inline-block bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+            Time Tracking
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
+            Know Exactly Where<br />Your Hours Are Going
+          </h2>
+          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+            CleanQuote's built-in time tracking lets your team clock in, take breaks, log lunches,
+            and track time at each property — right from their phone.
+          </p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            And this isn't just for payroll. Every actual job duration feeds directly back into the
+            recalibration engine, making your future estimates more accurate with every single visit.
+          </p>
+
+          <ul class="space-y-3">
+            {timesheetBullets.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="flex justify-center">
+          <img
+            src="/images/timesheets.jpg"
+            alt="CleanQuote timesheets mobile view with timer, break tracking and today's visits"
+            class="w-64 rounded-3xl shadow-2xl border border-gray-200"
+          />
+        </div>
+      </div>
+    </section>
+
+    {/* ── CREDIBILITY ── */}
+    <section class="bg-[#f7f9ff] py-16 px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          CleanQuote's pricing logic wasn't built on theory. It was developed using real-world data
+          from multiple residential cleaning businesses — all operating with profit margins between
+          35–40%. That's the foundation every new account starts from on day one.
+        </p>
+        <p class="text-[#1a2e5a] font-semibold text-base">
+          Built by a cleaning business owner who grew from $400 to $400K — and learned the hard
+          way that inconsistent quoting is the first thing that kills your margin.
+        </p>
+      </div>
+    </section>
+
+    {/* ── PRICING ── */}
+    <section class="py-20 px-6" style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 100%);">
+      <div class="max-w-5xl mx-auto text-center">
+        <div class="inline-block bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+          Pricing
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Simple, Honest Pricing</h2>
+        <p class="text-white/65 text-base max-w-md mx-auto mb-12">
+          No per-feature tiers. No surprise charges. Everything included from day one.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-5 max-w-xl mx-auto">
+          {/* Solo */}
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-7 text-left">
+            <div class="text-xs font-bold uppercase tracking-widest text-white/50 mb-2">Solo Operator</div>
+            <div class="text-4xl font-extrabold text-white mb-1">
+              $29<span class="text-lg font-normal text-white/50">/mo</span>
+            </div>
+            <div class="text-sm text-white/55 mb-5 leading-snug">
+              For owner-operators running their own cleaning business.
+            </div>
+            <ul class="space-y-2 mb-6 text-sm text-white/70">
+              {soloFeatures.map((f) => (
+                <li class="flex items-center gap-2">
+                  <span class="text-orange-400 font-bold">✓</span>{f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={LOGIN_URL}
+              class="block w-full text-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm py-2.5 rounded-xl transition-colors"
+            >
+              Start Free Trial
+            </a>
+          </div>
+
+          {/* Team */}
+          <div class="rounded-2xl p-7 text-left relative" style="background: #FF8C00; border: 1px solid #FF8C00;">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-orange-600 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+              Most Popular
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest text-white/80 mb-2">Team</div>
+            <div class="text-4xl font-extrabold text-white mb-1">
+              $49<span class="text-lg font-normal text-white/70">/mo</span>
+            </div>
+            <div class="text-sm text-white/80 mb-5 leading-snug">
+              For businesses with cleaners and staff to manage.
+            </div>
+            <ul class="space-y-2 mb-6 text-sm text-white/90">
+              {teamFeatures.map((f) => (
+                <li class="flex items-center gap-2">
+                  <span class="font-bold">✓</span>{f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={LOGIN_URL}
+              class="block w-full text-center text-white font-bold text-sm py-2.5 rounded-xl transition-colors hover:opacity-90"
+              style="background: #1a2e5a;"
+            >
+              Start Free Trial
+            </a>
+          </div>
+        </div>
+
+        <p class="mt-6 text-white/40 text-sm">
+          14-day free trial · No credit card required · Cancel anytime
+        </p>
+      </div>
+    </section>
+
+    {/* ── FINAL CTA ── */}
+    <section class="py-20 px-6 text-center" style="background: linear-gradient(135deg, #c96a00, #FF8C00);">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+        Your Next Quote Could Be<br />Your Most Profitable One.
+      </h2>
+      <p class="text-white/85 text-base max-w-md mx-auto mb-8 leading-relaxed">
+        CleanQuote takes about 10 minutes to set up. Most users recoup the cost the first time it
+        catches a job they would have underquoted.
+      </p>
+      <a
+        href={LOGIN_URL}
+        class="inline-flex items-center gap-2 bg-white font-extrabold text-base rounded-2xl px-8 py-4 shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all"
+        style="color: #c96a00;"
+      >
+        Start My Free Trial — No Card Required →
+      </a>
+      <p class="mt-4 text-white/55 text-sm">
+        14 days free · Built for residential cleaning · Cancel anytime
+      </p>
+    </section>
+
+    {/* ── FOOTER ── */}
+    <footer class="bg-[#111d3a] text-white/35 text-sm py-6 px-6 text-center">
+      <p>
+        © 2026 CleanQuote ·{' '}
+        <a href={LOGIN_URL} class="hover:text-white/70 transition-colors">Log In</a>
+        {' · '}
+        <a href="/privacy-policy/" class="hover:text-white/70 transition-colors">Privacy</a>
+        {' · '}
+        <a href="/terms-and-conditions/" class="hover:text-white/70 transition-colors">Terms</a>
+        {' · '}
+        <a href="/sms-consent/" class="hover:text-white/70 transition-colors">SMS Consent</a>
+      </p>
+    </footer>
+  </div>
+</Layout>
