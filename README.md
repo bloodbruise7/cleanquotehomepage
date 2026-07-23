@@ -5,7 +5,7 @@ Static marketing site for [thecleanquote.com](https://thecleanquote.com), built 
 to **Cloudflare Pages**.
 
 The app itself lives at <https://app.thecleanquote.com> — every login / "Start Free Trial"
-link on this site sends the user to `https://app.thecleanquote.com/login`.
+link on this site sends the user to `https://app.thecleanquote.com`.
 
 ## Pages
 
