@@ -1,0 +1,24 @@
+---
+// Inline Lucide icon. `name` is the PascalCase export from lucide-static (e.g. "Calculator").
+import * as lucide from 'lucide-static';
+
+interface Props {
+  name: keyof typeof lucide;
+  class?: string;
+  strokeWidth?: number;
+}
+
+const { name, class: className = 'w-5 h-5', strokeWidth = 2 } = Astro.props;
+const raw = lucide[name] as string | undefined;
+if (!raw) throw new Error(`Unknown Lucide icon: ${String(name)}`);
+
+// Only rewrite the root <svg> tag; child shapes (e.g. <rect width=…>) must keep their attributes.
+const end = raw.indexOf('>') + 1;
+const openTag = raw
+  .slice(0, end)
+  .replace(/\s(class|width|height|stroke-width)="[^"]*"/g, '')
+  .replace('<svg', `<svg class="${className}" stroke-width="${strokeWidth}" aria-hidden="true" focusable="false"`);
+const svg = openTag + raw.slice(end);
+---
+
+<Fragment set:html={svg} />

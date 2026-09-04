@@ -1,0 +1,36 @@
+---
+import Logo from './Logo.astro';
+import { LOGIN_URL, BTN_PRIMARY, BTN_OUTLINE } from '../site';
+
+interface Props {
+  // Section anchors only resolve on the homepage; legal pages link back to "/#…".
+  home?: boolean;
+}
+
+const { home = false } = Astro.props;
+const prefix = home ? '' : '/';
+const links = [
+  { href: `${prefix}#calculator`, label: 'Calculators' },
+  { href: `${prefix}#features`, label: 'Features' },
+  { href: `${prefix}#pricing`, label: 'Pricing' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line-card">
+  <nav class="max-w-6xl mx-auto h-16 flex items-center justify-between px-6" aria-label="Primary">
+    <a href="/" aria-label="CleanQuote home" class="flex items-center">
+      <Logo class="text-2xl" />
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-ink-body">
+      {links.map((l) => (
+        <a href={l.href} class="hover:text-navy transition-colors duration-150">{l.label}</a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <a href={LOGIN_URL} class={BTN_OUTLINE}>Log In</a>
+      <a href={LOGIN_URL} class={`${BTN_PRIMARY} hidden sm:inline-flex !px-5 !py-2.5`}>Start Free Trial</a>
+    </div>
+  </nav>
+</header>

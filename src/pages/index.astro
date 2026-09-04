@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const LOGIN_URL = 'https://app.thecleanquote.com';
-const LOGO_URL =
-  'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6966ac3f075c93d04f0065ad/f52e9713f_file_00000000d788722f8d707c0fc8248d08.png';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { LOGIN_URL, BTN_PRIMARY, BTN_SECONDARY, BTN_OUTLINE, EYEBROW, CHIP_NAVY, H2, LEAD, CARD, FIGURE } from '../site';
 
 // §2 — Stats band (product-capability facts)
 const stats = [
@@ -15,17 +15,17 @@ const stats = [
 // §3 — Problem
 const problems = [
   {
-    icon: '📉',
+    icon: 'TrendingDown',
     title: 'Guesswork pricing',
     body: 'You quote from memory, undercharge the hard jobs, and find out on-site that two hours was really four. The margin was gone before anyone picked up a mop.',
   },
   {
-    icon: '📨',
+    icon: 'MailX',
     title: 'The follow-up you never send',
     body: 'Quotes sit unanswered. Invoices go late. The review you earned never gets asked for, because asking is one more thing at 9 p.m.',
   },
   {
-    icon: '🧩',
+    icon: 'Blocks',
     title: "Ten tools that don't talk",
     body: "A calculator here, a calendar there, a payment app, a texting app, a spreadsheet for the team. Nothing syncs, so you're the integration.",
   },
@@ -35,16 +35,19 @@ const problems = [
 const solutions = [
   {
     n: '1',
+    icon: 'Calculator',
     title: 'Price it right',
     body: 'Purpose-built calculators for residential, carpet, pressure washing, and window work. Answer a few questions, get a defensible price and a realistic time estimate.',
   },
   {
     n: '2',
+    icon: 'CalendarCheck',
     title: 'Book it and run it',
     body: 'Send a branded quote, take an e-signature and a deposit, and let the customer self-book a confirmed slot. The visit lands on your schedule with the checklist attached.',
   },
   {
     n: '3',
+    icon: 'Banknote',
     title: 'Get paid and improve',
     body: 'Cards and ACH, automatic reminders, and payouts to your bank. Every logged hour feeds the calibration engine so your estimates keep tightening.',
   },
@@ -89,6 +92,13 @@ const engineBullets = [
   'Calibration that sharpens pricing as real hours accumulate.',
   'An honest "warming up" state with visible progress, not fake precision on day one.',
   'Dashboard view of cash, collections, schedule risk, and calibration in one place.',
+];
+
+// §9 — Website widget
+const widgetBullets = [
+  'Instant self-quoting on your own site, in your branding.',
+  'Every submission creates a customer and quote in your CRM.',
+  'No developer needed — embed and go.',
 ];
 
 // §10 — Automations
@@ -162,26 +172,32 @@ const everythingCards = [
   },
   {
     title: 'Expenses',
-    icon: '🧾',
+    icon: 'Receipt',
     body: 'Log expenses by category with receipts and export them at tax time — so the numbers are ready when the accountant asks.',
   },
   {
     title: 'Invoicing',
-    icon: '💳',
+    icon: 'CreditCard',
     body: 'Invoices with aging and payment status, plus the automated reminders that collect them.',
   },
   {
     title: 'Multi-location',
-    icon: '📍',
+    icon: 'MapPin',
     body: 'Run Sacramento, Spartanburg, and Portland from one account, each with its own pricing, team, and calendar.',
   },
 ];
 
 // §16 — AI + integrations
-const aiBullets = [
-  'Connect your own AI assistant to your CleanQuote data and actions.',
-  'Built on MCP, the open standard for AI-to-tool connections.',
-  'Webhooks out, Zapier-compatible, for the rest of your tools.',
+const aiCards = [
+  { icon: 'Bot', text: 'Connect your own AI assistant to your CleanQuote data and actions.' },
+  { icon: 'Workflow', text: 'Built on MCP, the open standard for AI-to-tool connections.' },
+  { icon: 'Zap', text: 'Webhooks out, Zapier-compatible, for the rest of your tools.' },
+];
+
+// §18 — Switching
+const switchingPoints = [
+  'Import your existing customer list from a CSV.',
+  'Start quoting the day you sign up, not weeks later.',
 ];
 
 // §19 — Pricing
@@ -214,12 +230,9 @@ const schema = {
   ],
 };
 
-// Shared class tokens (match existing design system)
-const EYEBROW_BLUE = 'inline-block bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4';
-const EYEBROW_ORANGE = 'inline-block bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4';
-const EYEBROW_DARK = 'inline-block bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4';
-const CTA_ORANGE = 'inline-flex items-center gap-2 text-white font-bold text-base rounded-xl px-7 py-3.5 transition-all hover:-translate-y-0.5 hover:shadow-lg bg-[#FF8C00] hover:bg-[#c96a00]';
-const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white';
+const CHECK_BULLET = 'flex items-start gap-3 text-sm font-medium text-ink-body leading-relaxed';
+const CHECK_DOT = 'mt-0.5 w-5 h-5 rounded-full bg-navy-tint text-navy flex items-center justify-center flex-shrink-0';
+const ICON_TILE = 'w-11 h-11 rounded-xl bg-navy-tint text-navy flex items-center justify-center flex-shrink-0';
 ---
 
 <Layout
@@ -232,100 +245,62 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
-  <div class="min-h-screen bg-white font-sans overflow-x-hidden">
-    {/* ── NAV ── */}
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 h-16">
-      <div class="max-w-6xl mx-auto h-full flex items-center justify-between px-6">
-        <a href="/" aria-label="CleanQuote home">
-          <img src={LOGO_URL} alt="CleanQuote" width="140" height="40" class="h-10 w-auto object-contain" />
-        </a>
-        <div class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-600">
-          <a href="#calculator" class="hover:text-[#1a2e5a] transition-colors">Calculators</a>
-          <a href="#features" class="hover:text-[#1a2e5a] transition-colors">Features</a>
-          <a href="#pricing" class="hover:text-[#1a2e5a] transition-colors">Pricing</a>
-        </div>
-        <div class="flex items-center gap-3">
-          <a
-            href={LOGIN_URL}
-            class="text-sm font-semibold text-[#1a2e5a] border-2 border-[#1a2e5a] rounded-lg px-4 py-1.5 hover:bg-[#1a2e5a] hover:text-white transition-colors"
-          >
-            Log In
-          </a>
-          <a
-            href={LOGIN_URL}
-            class="hidden sm:inline-flex text-sm font-semibold bg-[#FF8C00] text-white rounded-lg px-4 py-1.5 hover:bg-orange-700 transition-colors"
-          >
-            Start Free Trial
-          </a>
-        </div>
-      </div>
-    </nav>
+  <Nav home />
 
+  <main class="overflow-x-hidden">
     {/* ── §1 HERO ── */}
-    <section
-      class="pt-16"
-      style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 55%, #243660 100%);"
-    >
-      <div class="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-        {/* Copy */}
+    <section class="bg-page">
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/40 rounded-full px-4 py-1.5 text-xs font-semibold text-orange-300 uppercase tracking-widest mb-6">
-            <span>📋</span> Built for House-Cleaning Businesses
-          </div>
+          <span class={`${CHIP_NAVY} mb-6`}>
+            <Icon name="ClipboardCheck" class="w-3.5 h-3.5" strokeWidth={2.5} />
+            Built for house-cleaning businesses
+          </span>
 
-          <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-5">
-            Quote a house in 60 seconds.<br />
-            <span style="color: #FF8C00;">Get paid without chasing anyone.</span>
+          <h1 class="text-4xl md:text-5xl font-extrabold text-ink tracking-tight leading-[1.1] mb-5">
+            Quote a house<br class="hidden md:block" /> in 60 seconds.<br />
+            <span class="text-orange">Get paid without<br class="hidden md:block" /> chasing anyone.</span>
           </h1>
 
-          <p class="text-lg text-white/75 leading-relaxed mb-8 font-light">
+          <p class="text-lg text-ink-body font-medium leading-relaxed mb-8">
             CleanQuote is the pricing calculator and CRM made for residential cleaning companies.
             Build an accurate quote from square footage and rooms, send it as a branded estimate your
             customer can approve and sign online, and let the booking, payment, and reminders run
             themselves.
           </p>
 
-          <div class="flex flex-wrap items-center gap-4">
-            <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
-            <a href="#calculator" class="text-sm font-semibold text-white/70 hover:text-white transition-colors">
-              See how the calculator works ↓
+          <div class="flex flex-wrap items-center gap-3">
+            <a href={LOGIN_URL} class={BTN_PRIMARY}>
+              Start Free Trial
+              <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} />
+            </a>
+            <a href="#calculator" class={BTN_OUTLINE}>
+              See how the calculator works
+              <Icon name="ChevronDown" class="w-4 h-4" strokeWidth={2.5} />
             </a>
           </div>
 
-          <p class="mt-4 text-sm text-white/50">
+          <p class="mt-5 text-sm font-medium text-ink-secondary">
             Free 14-day trial, no card required. Import your existing customers in a few clicks.
           </p>
         </div>
 
-        {/* Screenshot + confidence badge */}
         <div class="relative">
-          <div class="absolute -top-5 right-0 z-10 bg-white rounded-2xl px-4 py-3 shadow-2xl flex items-center gap-3">
+          <div class="absolute -top-5 right-4 z-10 bg-white border border-line-card rounded-card px-4 py-3 hidden sm:flex items-center gap-3">
             <div class="relative w-14 h-14 flex-shrink-0">
-              <svg viewBox="0 0 56 56" class="w-14 h-14 -rotate-90">
-                <circle cx="28" cy="28" r="22" fill="none" stroke="#e5e7eb" stroke-width="5" />
-                <circle
-                  cx="28"
-                  cy="28"
-                  r="22"
-                  fill="none"
-                  stroke="#22a06b"
-                  stroke-width="5"
-                  stroke-linecap="round"
-                  stroke-dasharray="123 138"
-                />
+              <svg viewBox="0 0 56 56" class="w-14 h-14 -rotate-90" aria-hidden="true">
+                <circle cx="28" cy="28" r="22" fill="none" stroke="#eef1f6" stroke-width="5" />
+                <circle cx="28" cy="28" r="22" fill="none" stroke="#1e8e4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="126 138" />
               </svg>
-              <div class="absolute inset-0 flex items-center justify-center text-sm font-extrabold text-green-600">91%</div>
+              <div class="absolute inset-0 flex items-center justify-center text-sm font-extrabold text-success">91%</div>
             </div>
             <div>
-              <div class="text-xs font-bold text-gray-800">Quote Confidence</div>
-              <div class="text-xs text-green-600 font-semibold">Excellent confidence</div>
+              <div class="text-xs font-bold text-ink">Quote Confidence</div>
+              <div class="text-xs font-semibold text-success">Excellent confidence</div>
             </div>
           </div>
 
-          <div
-            class="rounded-2xl overflow-hidden shadow-2xl border border-white/10"
-            style="transform: perspective(1000px) rotateY(-3deg) rotateX(2deg);"
-          >
+          <div class={FIGURE}>
             <img
               src="/images/calc-desktop.webp"
               width="1000"
@@ -339,42 +314,34 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
         </div>
       </div>
 
-      {/* Wave */}
-      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full block">
-        <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#f7f9ff" />
-      </svg>
-    </section>
-
-    {/* ── §2 STATS BAR ── */}
-    <section class="bg-[#f7f9ff] border-b border-gray-200 py-8 px-6">
-      <div class="max-w-5xl mx-auto grid sm:grid-cols-3 gap-8 text-center">
-        {stats.map((s) => (
-          <div>
-            <div class="text-2xl font-extrabold" style={`color: ${s.orange ? '#FF8C00' : '#1a2e5a'};`}>{s.num}</div>
-            <div class="text-xs text-gray-500 mt-1.5 max-w-[240px] mx-auto leading-snug">{s.label}</div>
-          </div>
-        ))}
+      {/* ── §2 STATS BAND ── */}
+      <div class="max-w-6xl mx-auto px-6 pb-16 md:pb-20">
+        <div class="grid sm:grid-cols-3 gap-4">
+          {stats.map((s) => (
+            <div class={`${CARD} p-6`}>
+              <div class={`text-2xl font-extrabold tracking-tight ${s.orange ? 'text-orange' : 'text-navy'}`}>{s.num}</div>
+              <div class="mt-1.5 text-sm font-medium text-ink-body leading-relaxed">{s.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
     {/* ── §3 PROBLEM ── */}
-    <section class="bg-white py-20 px-6">
-      <div class="max-w-5xl mx-auto">
-        <div class={EYEBROW_BLUE}>The Problem</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-          The three things that quietly<br />kill a cleaning business
-        </h2>
-        <p class="text-gray-500 text-base max-w-xl leading-relaxed mb-12">
+    <section class="bg-white border-y border-line-card py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class={EYEBROW}>The Problem</div>
+        <h2 class={H2}>The three things that quietly<br class="hidden md:block" /> kill a cleaning business</h2>
+        <p class={`${LEAD} max-w-xl mb-12`}>
           It usually isn't demand. It's the gap between the quote, the schedule, and the deposit.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-5">
+        <div class="grid md:grid-cols-3 gap-4">
           {problems.map((c) => (
-            <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl p-6 relative overflow-hidden">
-              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF8C00] to-orange-300"></div>
-              <div class="text-3xl mb-3">{c.icon}</div>
-              <h3 class="font-bold text-[#1a2e5a] text-base mb-2">{c.title}</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">{c.body}</p>
+            <div class={`${CARD} p-6`}>
+              <div class={ICON_TILE}><Icon name={c.icon} class="w-5 h-5" /></div>
+              <h3 class="mt-5 font-bold text-ink text-base mb-2">{c.title}</h3>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">{c.body}</p>
             </div>
           ))}
         </div>
@@ -382,23 +349,24 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
     </section>
 
     {/* ── §4 SOLUTION ── */}
-    <section class="py-20 px-6" style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 100%);">
-      <div class="max-w-5xl mx-auto">
-        <div class={EYEBROW_DARK}>The Solution</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
-          One system, from first quote<br />to paid invoice
-        </h2>
-        <p class="text-white/65 text-base max-w-xl leading-relaxed mb-12">
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class={EYEBROW}>The Solution</div>
+        <h2 class={H2}>One system, from first quote<br class="hidden md:block" /> to paid invoice</h2>
+        <p class={`${LEAD} max-w-xl mb-12`}>
           CleanQuote replaces the stack. Price the job, book it, and collect on it without leaving the
           app — and every completed visit makes your next quote sharper.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-5">
+        <div class="grid md:grid-cols-3 gap-4">
           {solutions.map((c) => (
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
-              <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-extrabold text-sm mb-4" style="background: #FF8C00;">{c.n}</div>
-              <h3 class="font-bold text-white text-base mb-2">{c.title}</h3>
-              <p class="text-white/60 text-sm leading-relaxed">{c.body}</p>
+            <div class={`${CARD} p-6`}>
+              <div class="flex items-center justify-between">
+                <div class={ICON_TILE}><Icon name={c.icon} class="w-5 h-5" /></div>
+                <span class="w-8 h-8 rounded-full bg-orange text-white text-xs font-extrabold flex items-center justify-center">{c.n}</span>
+              </div>
+              <h3 class="mt-5 font-bold text-ink text-base mb-2">{c.title}</h3>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">{c.body}</p>
             </div>
           ))}
         </div>
@@ -406,19 +374,17 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
     </section>
 
     {/* ── §5 RESIDENTIAL CALCULATOR ── */}
-    <section id="calculator" class="bg-[#f7f9ff] py-20 px-6 scroll-mt-16">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section id="calculator" class="bg-white border-y border-line-card py-20 px-6 scroll-mt-16">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div>
-          <div class={EYEBROW_ORANGE}>The Calculator</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            The residential calculator<br />you'll actually trust
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>The Calculator</div>
+          <h2 class={H2}>The residential calculator<br class="hidden md:block" /> you'll actually trust</h2>
+          <p class={`${LEAD} mb-3`}>
             Enter square footage, bedrooms, bathrooms, and job type. CleanQuote returns a price, a
             time estimate, and a team-size breakdown — so you know what to charge and how long it
             really takes before you commit.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Pick the service — initial, weekly, biweekly, monthly, deep, or move-out — and the
             calculator prices it against your own hourly rate and your location's settings. It shows
             the estimated clean time for a team of one, two, or three, so you can staff the job to fit
@@ -427,14 +393,14 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
 
           <ul class="space-y-3 mb-8">
             {residentialBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style="background: #FF8C00;"></span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
 
         <div class="flex justify-center">
@@ -445,55 +411,45 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
             loading="lazy"
             decoding="async"
             alt="CleanQuote mobile calculator showing residential pricing inputs, a job time estimate, and a team-size breakdown"
-            class="w-64 rounded-3xl shadow-2xl border border-gray-200"
+            class="w-64 rounded-[28px] border border-line-card bg-white"
           />
         </div>
       </div>
     </section>
 
     {/* ── §6 BEYOND STANDARD RESIDENTIAL ── */}
-    <section class="bg-white py-20 px-6">
-      <div class="max-w-5xl mx-auto">
-        <div class={EYEBROW_BLUE}>Specialized Breadth</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-          Add carpet, pressure washing, and window<br class="hidden md:block" /> work — priced with the same discipline
-        </h2>
-        <p class="text-gray-500 text-base max-w-2xl leading-relaxed mb-12">
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class={EYEBROW}>Specialized Breadth</div>
+        <h2 class={H2}>Add carpet, pressure washing, and window<br class="hidden md:block" /> work — priced with the same discipline</h2>
+        <p class={`${LEAD} max-w-2xl mb-12`}>
           Residential is the core. When a customer asks for more, you don't drop to a napkin estimate —
           you quote it in CleanQuote with a calculator built for that line.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-5">
+        <div class="grid md:grid-cols-3 gap-4">
           {addonLines.map((c) => (
-            <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
-              <div class="h-56 overflow-hidden border-b border-gray-200 bg-white">
-                <img
-                  src={c.img}
-                  width={c.w}
-                  height={c.h}
-                  loading="lazy"
-                  decoding="async"
-                  alt={c.alt}
-                  class="w-full h-full object-cover object-top"
-                />
+            <div class={`${FIGURE} flex flex-col`}>
+              <div class="h-56 overflow-hidden border-b border-line-card bg-page">
+                <img src={c.img} width={c.w} height={c.h} loading="lazy" decoding="async" alt={c.alt} class="w-full h-full object-cover object-top" />
               </div>
               <div class="p-6">
-                <h3 class="font-bold text-[#1a2e5a] text-base mb-2">{c.title}</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">{c.body}</p>
+                <h3 class="font-bold text-ink text-base mb-2">{c.title}</h3>
+                <p class="text-sm font-medium text-ink-body leading-relaxed">{c.body}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <p class="text-gray-400 text-sm text-center mt-8">
+        <p class="text-sm font-medium text-ink-secondary text-center mt-8">
           One CRM that also prices your add-on lines — no second app, no second login.
         </p>
       </div>
     </section>
 
     {/* ── §7 RECALIBRATION ENGINE ── */}
-    <section class="bg-[#f7f9ff] py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-white border-y border-line-card py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div class={FIGURE}>
           <img
             src="/images/dashboard-example.webp"
@@ -507,15 +463,13 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
         </div>
 
         <div>
-          <div class={EYEBROW_BLUE}>The Recalibration Engine</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            Your quotes get smarter every<br />time your team clocks out
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>The Recalibration Engine</div>
+          <h2 class={H2}>Your quotes get smarter every time your team clocks out</h2>
+          <p class={`${LEAD} mb-3`}>
             CleanQuote watches estimated time against actual logged time and quietly tunes your
             pricing. The longer you use it, the closer your quotes land to reality.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Every completed visit with logged hours is a data point. The calibration engine compares
             what you quoted to what the job actually took and adjusts your estimates across all four
             calculators. New account? It tells you it's still warming up and shows the progress toward
@@ -524,34 +478,31 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
 
           <ul class="space-y-3 mb-8">
             {engineBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
       </div>
     </section>
 
     {/* ── §8 PROFESSIONAL EXPERIENCE ── */}
-    <section class="bg-white py-20 px-6">
-      <div class="max-w-5xl mx-auto">
-        <div class={EYEBROW_ORANGE}>Customer Experience</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-          Send a quote that looks like the<br class="hidden md:block" /> company you're trying to become
-        </h2>
-        <p class="text-gray-500 text-base max-w-2xl leading-relaxed mb-12">
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class={EYEBROW}>Customer Experience</div>
+        <h2 class={H2}>Send a quote that looks like the<br class="hidden md:block" /> company you're trying to become</h2>
+        <p class={`${LEAD} max-w-2xl mb-12`}>
           Your customer gets a branded estimate by text and email, opens it in their browser, approves
           it, signs it, pays a deposit, and books their own confirmed slot — without a single phone call.
         </p>
 
-        <div class="grid md:grid-cols-2 gap-6 mb-6">
-          {/* Sub-block A */}
-          <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
-            <div class={FIGURE + ' rounded-none border-0 border-b shadow-none'}>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div class={`${FIGURE} flex flex-col`}>
+            <div class="border-b border-line-card">
               <img
                 src="/images/email-quote-example.webp"
                 width="974"
@@ -563,17 +514,16 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
               />
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-[#1a2e5a] text-base mb-2">Branded quote delivery</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">
+              <h3 class="font-bold text-ink text-base mb-2">Branded quote delivery</h3>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">
                 Every estimate goes out as a clean, on-brand email and text with a "View Quote Online"
                 button. No PDFs to open, no attachments to lose.
               </p>
             </div>
           </div>
 
-          {/* Sub-block B */}
-          <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
-            <div class="h-64 overflow-hidden border-b border-gray-200 bg-white">
+          <div class={`${FIGURE} flex flex-col`}>
+            <div class="h-64 overflow-hidden border-b border-line-card">
               <img
                 src="/images/customer-faceing-quote-screen.webp"
                 width="909"
@@ -585,8 +535,8 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
               />
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-[#1a2e5a] text-base mb-2">Approve, request changes, or sign — online</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">
+              <h3 class="font-bold text-ink text-base mb-2">Approve, request changes, or sign — online</h3>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">
                 The customer reviews the full scope and terms, agrees, and signs in the browser.
                 Requesting a change starts a conversation instead of killing the deal.
               </p>
@@ -594,60 +544,60 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
           </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6 mb-8">
-          {/* Sub-block C */}
-          <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl p-6">
-            <div class="text-2xl mb-3">💰</div>
-            <h3 class="font-bold text-[#1a2e5a] text-base mb-2">Deposit at approval</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
-              Collect a deposit the moment they approve, so a booking is a commitment. It applies to
-              the final bill automatically.
-            </p>
+        <div class="grid md:grid-cols-2 gap-4 mb-8">
+          <div class={`${CARD} p-6 flex gap-4`}>
+            <div class={ICON_TILE}><Icon name="Banknote" class="w-5 h-5" /></div>
+            <div>
+              <h3 class="font-bold text-ink text-base mb-2">Deposit at approval</h3>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">
+                Collect a deposit the moment they approve, so a booking is a commitment. It applies to
+                the final bill automatically.
+              </p>
+            </div>
           </div>
-          {/* Sub-block D */}
-          <div class="bg-[#f7f9ff] border border-gray-200 rounded-2xl p-6">
-            <div class="text-2xl mb-3">📆</div>
-            <h3 class="font-bold text-[#1a2e5a] text-base mb-2">Book their next cleaning in under a minute</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
-              After approval, the customer self-schedules. CleanQuote checks your team's live
-              availability, confirms the slot is open, and books it on the spot. If that time's taken,
-              it offers the next ones that aren't. The visit lands on your calendar, assigned and ready.
-            </p>
+          <div class={`${CARD} p-6 flex gap-4`}>
+            <div class={ICON_TILE}><Icon name="CalendarClock" class="w-5 h-5" /></div>
+            <div>
+              <h3 class="font-bold text-ink text-base mb-2">Book their next cleaning in under a minute</h3>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">
+                After approval, the customer self-schedules. CleanQuote checks your team's live
+                availability, confirms the slot is open, and books it on the spot. If that time's taken,
+                it offers the next ones that aren't. The visit lands on your calendar, assigned and ready.
+              </p>
+            </div>
           </div>
         </div>
 
-        <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+        <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
       </div>
     </section>
 
     {/* ── §9 WEBSITE WIDGET ── */}
-    <section class="bg-[#f7f9ff] py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-white border-y border-line-card py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div>
-          <div class={EYEBROW_BLUE}>Website Widget</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            Put your calculator on<br />your own website
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>Website Widget</div>
+          <h2 class={H2}>Put your calculator on<br class="hidden md:block" /> your own website</h2>
+          <p class={`${LEAD} mb-3`}>
             Embed the CleanQuote quote form on your site. Visitors price their own job and turn into
             leads while you sleep — and every quote syncs straight back into your CRM.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Drop the widget onto your existing website and a homeowner can answer a few questions and
             see a real estimate right there, on your domain, in your branding. A late-night visitor is
             a lead in your pipeline by morning instead of a form you have to answer.
           </p>
 
           <ul class="space-y-3 mb-8">
-            {['Instant self-quoting on your own site, in your branding.', 'Every submission creates a customer and quote in your CRM.', 'No developer needed — embed and go.'].map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style="background: #FF8C00;"></span>
+            {widgetBullets.map((item) => (
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
 
         <div class={FIGURE}>
@@ -665,8 +615,8 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
     </section>
 
     {/* ── §10 AUTOMATIONS ── */}
-    <section class="bg-white py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div class={FIGURE}>
           <img
             src="/images/review-request-and-rating-request.webp"
@@ -680,15 +630,13 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
         </div>
 
         <div>
-          <div class={EYEBROW_ORANGE}>Automations</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            The follow-ups that make<br />you money, sent for you
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>Automations</div>
+          <h2 class={H2}>The follow-ups that make<br class="hidden md:block" /> you money, sent for you</h2>
+          <p class={`${LEAD} mb-3`}>
             Review requests, on-my-way texts, and late-payment reminders fire on their own schedule.
             You set the rule once; CleanQuote does the nagging.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             After a visit, CleanQuote can ask for a Google review and a private rating. Before an
             appointment, it can text the customer that you're on the way. When an invoice slips past
             due, it sends the reminder at 3, 7, and 14 days. Built-in rules are ready out of the box,
@@ -697,51 +645,50 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
 
           <ul class="space-y-3 mb-8">
             {automationBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
       </div>
     </section>
 
     {/* ── §11 COMMUNICATIONS HUB ── */}
-    <section class="bg-[#f7f9ff] py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-white border-y border-line-card py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div>
-          <div class={EYEBROW_BLUE}>Communications Hub</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            Your business line,<br />inside CleanQuote
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>Communications Hub</div>
+          <h2 class={H2}>Your business line,<br class="hidden md:block" /> inside CleanQuote</h2>
+          <p class={`${LEAD} mb-3`}>
             Add a dedicated number and handle customer calls and texts without leaving the app or
             handing out your cell.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Make and take calls right in your browser, catch voicemail when you can't, and run two-way
             SMS threads with customers next to their job history.
           </p>
 
-          <ul class="space-y-3 mb-6">
+          <ul class="space-y-3 mb-7">
             {commsBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style="background: #FF8C00;"></span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <div class="inline-block bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm text-[#1a2e5a] font-semibold">
-            Communications Hub is an optional <span style="color:#FF8C00;">$39/month</span> add-on.
+          <div class="inline-flex items-center gap-2 bg-orange-panel border border-orange-panel-border rounded-xl px-4 py-2.5 text-sm font-semibold text-ink">
+            <Icon name="Phone" class="w-4 h-4 text-orange-deeper" />
+            Communications Hub is an optional <span class="text-orange-deeper">$39/month</span> add-on.
           </div>
         </div>
 
         <div class="flex justify-center">
-          <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 p-4 max-w-xs">
+          <div class={`${CARD} p-4 max-w-xs`}>
             <img
               src="/images/on-my-way-message.webp"
               width="443"
@@ -757,8 +704,8 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
     </section>
 
     {/* ── §12 GET PAID ── */}
-    <section class="bg-white py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div class={FIGURE}>
           <img
             src="/images/payment-settings.webp"
@@ -772,46 +719,42 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
         </div>
 
         <div>
-          <div class={EYEBROW_ORANGE}>Get Paid</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            Take the payment the way<br />the customer wants to pay
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>Get Paid</div>
+          <h2 class={H2}>Take the payment the way<br class="hidden md:block" /> the customer wants to pay</h2>
+          <p class={`${LEAD} mb-3`}>
             Cards and ACH bank transfer, powered by Stripe, with deposits up front and an optional
             surcharge to cover card fees.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Connect Stripe once and start collecting. Deposits secure the booking at approval; the
             balance is due when the work's done. Payouts land in your bank on Stripe's schedule.
           </p>
 
           <ul class="space-y-3 mb-8">
             {payBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
       </div>
     </section>
 
     {/* ── §13 TIME TRACKING ── */}
-    <section class="bg-[#f7f9ff] py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-white border-y border-line-card py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div>
-          <div class={EYEBROW_BLUE}>Time Tracking</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            Every logged hour<br />does two jobs
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>Time Tracking</div>
+          <h2 class={H2}>Every logged hour<br class="hidden md:block" /> does two jobs</h2>
+          <p class={`${LEAD} mb-3`}>
             Your team clocks in and out on the visit; CleanQuote turns that into both a timesheet and
             the data that tightens your pricing.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Cleaners start and stop timers on each visit and take breaks that are tracked separately
             from paid time. The same logged time flows into the calibration engine and into your
             Cleaner Efficiency report, so you can see estimated-versus-actual by cleaner and find out
@@ -820,14 +763,14 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
 
           <ul class="space-y-3 mb-8">
             {timeBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style="background: #FF8C00;"></span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
 
         <div class={FIGURE}>
@@ -845,8 +788,8 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
     </section>
 
     {/* ── §14 TEAM MANAGEMENT ── */}
-    <section class="bg-white py-20 px-6">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         <div class={FIGURE}>
           <img
             src="/images/team.webp"
@@ -860,15 +803,13 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
         </div>
 
         <div>
-          <div class={EYEBROW_ORANGE}>Team Management</div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-            Give everyone the right access —<br class="hidden md:block" /> and nothing more
-          </h2>
-          <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          <div class={EYEBROW}>Team Management</div>
+          <h2 class={H2}>Give everyone the right access — and nothing more</h2>
+          <p class={`${LEAD} mb-3`}>
             Office staff run the business side; cleaning staff see their schedule and log their time.
             You control who sees what, and where.
           </p>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-7">
             Invite your team with a role. Cleaning staff see only their assigned visits, start their
             timers, and mark jobs complete — no access to billing or business settings. Set each
             person's availability window and the locations they can work, so a Spartanburg cleaner
@@ -877,88 +818,93 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
 
           <ul class="space-y-3 mb-8">
             {teamMgmtBullets.map((item) => (
-              <li class="flex items-start gap-3 text-sm text-gray-700">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>
+              <li class={CHECK_BULLET}>
+                <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
         </div>
       </div>
     </section>
 
     {/* ── §15 EVERYTHING INCLUDED ── */}
-    <section id="features" class="bg-[#f7f9ff] py-20 px-6 scroll-mt-16">
-      <div class="max-w-5xl mx-auto">
-        <div class={EYEBROW_BLUE}>Everything Included</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-3 leading-tight">
-          Everything else you need to run<br class="hidden md:block" /> the business, in the box
-        </h2>
-        <p class="text-gray-500 text-base max-w-xl leading-relaxed mb-12">
+    <section id="features" class="bg-white border-y border-line-card py-20 px-6 scroll-mt-16">
+      <div class="max-w-6xl mx-auto">
+        <div class={EYEBROW}>Everything Included</div>
+        <h2 class={H2}>Everything else you need to run<br class="hidden md:block" /> the business, in the box</h2>
+        <p class={`${LEAD} max-w-xl mb-12`}>
           No per-feature upsells on the core CRM. These come with your plan.
         </p>
 
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {everythingCards.map((c) => (
-            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden flex flex-col hover:shadow-md transition-all">
+            <div class={`${FIGURE} flex flex-col transition-transform duration-150 hover:-translate-y-px hover:shadow-lift`}>
               {c.img ? (
-                <div class="h-40 overflow-hidden border-b border-gray-200 bg-[#f7f9ff]">
+                <div class="h-40 overflow-hidden border-b border-line-card bg-page">
                   <img src={c.img} width={c.w} height={c.h} loading="lazy" decoding="async" alt={c.alt} class="w-full h-full object-cover object-top" />
                 </div>
               ) : (
-                <div class="pt-6 px-5 text-2xl">{c.icon}</div>
+                <div class="pt-5 px-5">
+                  <div class={ICON_TILE}><Icon name={c.icon} class="w-5 h-5" /></div>
+                </div>
               )}
               <div class="p-5">
-                <h3 class="font-bold text-[#1a2e5a] text-sm mb-1.5">{c.title}</h3>
-                <p class="text-gray-500 text-xs leading-relaxed">{c.body}</p>
+                <h3 class="font-bold text-ink text-sm mb-1.5">{c.title}</h3>
+                <p class="text-xs font-medium text-ink-body leading-relaxed">{c.body}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <p class="text-gray-400 text-sm text-center mt-8">
+        <p class="text-sm font-medium text-ink-secondary text-center mt-8">
           The Communications Hub and team roles round out the platform.
         </p>
       </div>
     </section>
 
     {/* ── §16 CONNECT YOUR OWN AI ── */}
-    <section class="py-20 px-6" style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 100%);">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class={EYEBROW_DARK}>AI + Integrations</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
-          Put an AI assistant to work<br />on the back office
-        </h2>
-        <p class="text-white/70 text-base max-w-2xl mx-auto leading-relaxed mb-4">
-          Connect your own AI to CleanQuote and let it pull up clients, build quotes, check the
-          schedule, and answer "how's the business doing" in plain language.
-        </p>
-        <p class="text-white/60 text-sm max-w-2xl mx-auto leading-relaxed mb-10">
-          Under the hood it's the Model Context Protocol (MCP), the open standard for connecting AI to
-          real tools. And when you want to wire CleanQuote into the rest of your stack, it sends
-          webhooks and is Zapier-compatible.
-        </p>
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mx-auto text-center">
+          <div class={EYEBROW}>AI + Integrations</div>
+          <h2 class={H2}>Put an AI assistant to work<br class="hidden md:block" /> on the back office</h2>
+          <p class={`${LEAD} mb-3`}>
+            Connect your own AI to CleanQuote and let it pull up clients, build quotes, check the
+            schedule, and answer "how's the business doing" in plain language.
+          </p>
+          <p class="text-sm font-medium text-ink-body leading-relaxed mb-10">
+            Under the hood it's the Model Context Protocol (MCP), the open standard for connecting AI to
+            real tools. And when you want to wire CleanQuote into the rest of your stack, it sends
+            webhooks and is Zapier-compatible.
+          </p>
+        </div>
 
-        <div class="grid sm:grid-cols-3 gap-4 text-left mb-10">
-          {aiBullets.map((item) => (
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-sm text-white/75 leading-relaxed">{item}</div>
+        <div class="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+          {aiCards.map((c) => (
+            <div class={`${CARD} p-5 flex gap-4 items-start`}>
+              <div class={ICON_TILE}><Icon name={c.icon} class="w-5 h-5" /></div>
+              <p class="text-sm font-medium text-ink-body leading-relaxed">{c.text}</p>
+            </div>
           ))}
         </div>
 
-        <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+        <div class="text-center">
+          <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
+        </div>
       </div>
     </section>
 
     {/* ── §17 FOUNDER CREDIBILITY ── */}
-    <section class="bg-white py-16 px-6">
+    <section class="bg-white border-y border-line-card py-16 px-6">
       <div class="max-w-3xl mx-auto text-center">
-        <div class={EYEBROW_ORANGE}>Why It Exists</div>
-        <h2 class="text-2xl md:text-3xl font-extrabold text-[#1a2e5a] mb-5 leading-tight">
+        <div class={EYEBROW}>Why It Exists</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-ink tracking-tight leading-tight mb-5">
           Built by someone who runs<br class="hidden md:block" /> the business you run
         </h2>
-        <p class="text-gray-500 text-base leading-relaxed">
+        <p class={LEAD}>
           CleanQuote comes out of a real residential cleaning company operating across multiple
           markets — built by an operator who needed accurate pricing, tight scheduling, and payments
           that collect themselves, and couldn't find a tool that did all three for cleaners. Every
@@ -968,165 +914,137 @@ const FIGURE = 'rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-
     </section>
 
     {/* ── §18 SWITCHING FROM ANOTHER CRM ── */}
-    <section class="bg-[#f7f9ff] py-20 px-6">
+    <section class="bg-page py-20 px-6">
       <div class="max-w-3xl mx-auto text-center">
-        <div class={EYEBROW_BLUE}>Switching Is Easy</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a2e5a] mb-4 leading-tight">
-          Already on Jobber, Housecall,<br class="hidden md:block" /> or a pile of spreadsheets?
-        </h2>
-        <p class="text-gray-500 text-base max-w-xl mx-auto leading-relaxed mb-3">
+        <div class={EYEBROW}>Switching Is Easy</div>
+        <h2 class={H2}>Already on Jobber, Housecall,<br class="hidden md:block" /> or a pile of spreadsheets?</h2>
+        <p class={`${LEAD} max-w-xl mx-auto mb-3`}>
           Bring your customers with you. CleanQuote imports your existing client list so you're not
           starting from an empty screen.
         </p>
-        <p class="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-8">
+        <p class="text-sm font-medium text-ink-body max-w-xl mx-auto leading-relaxed mb-8">
           Moving CRMs is the thing everyone dreads and puts off. Point CleanQuote at your export, map
           the columns, and go — your history comes along and you can send your first quote the same day.
         </p>
 
         <div class="flex flex-wrap justify-center gap-3 mb-8">
-          {['Import your existing customer list from a CSV.', 'Start quoting the day you sign up, not weeks later.'].map((item) => (
-            <div class="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 text-xs font-bold flex items-center justify-center flex-shrink-0">✓</span>
+          {switchingPoints.map((item) => (
+            <div class={`${CARD} px-4 py-2.5 text-sm font-medium text-ink-body flex items-center gap-2.5`}>
+              <span class={CHECK_DOT.replace('mt-0.5 ', '')}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
               {item}
             </div>
           ))}
         </div>
 
-        <a href={LOGIN_URL} class={CTA_ORANGE}>Start Free Trial →</a>
+        <a href={LOGIN_URL} class={BTN_PRIMARY}>Start Free Trial <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} /></a>
       </div>
     </section>
 
     {/* ── §19 PRICING ── */}
-    <section id="pricing" class="py-20 px-6 scroll-mt-16" style="background: linear-gradient(155deg, #111d3a 0%, #1a2e5a 100%);">
-      <div class="max-w-5xl mx-auto text-center">
-        <div class={EYEBROW_DARK}>Pricing</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Simple pricing. Start free.</h2>
-        <p class="text-white/65 text-base max-w-md mx-auto mb-12">
-          Two plans, no per-feature paywalls on the core CRM. Start a 14-day free trial — no card required.
-        </p>
+    <section id="pricing" class="bg-white border-y border-line-card py-20 px-6 scroll-mt-16">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-xl mx-auto">
+          <div class={EYEBROW}>Pricing</div>
+          <h2 class={H2}>Simple pricing. Start free.</h2>
+          <p class={`${LEAD} mb-12`}>
+            Two plans, no per-feature paywalls on the core CRM. Start a 14-day free trial — no card required.
+          </p>
+        </div>
 
-        <div class="grid sm:grid-cols-2 gap-5 max-w-xl mx-auto">
-          {/* Solo */}
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-7 text-left">
-            <div class="text-xs font-bold uppercase tracking-widest text-white/50 mb-2">Solo</div>
-            <div class="text-4xl font-extrabold text-white mb-1">$29<span class="text-lg font-normal text-white/50">/mo</span></div>
-            <div class="text-sm text-white/55 mb-5 leading-snug">For owner-operators running the whole show.</div>
-            <ul class="space-y-2 mb-6 text-sm text-white/70">
+        <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          <div class={`${CARD} p-7 flex flex-col`}>
+            <div class={EYEBROW}>Solo</div>
+            <div class="text-4xl font-black text-ink tracking-tight">$29<span class="text-base font-semibold text-ink-secondary">/mo</span></div>
+            <p class="mt-2 text-sm font-medium text-ink-body leading-relaxed">For owner-operators running the whole show.</p>
+            <ul class="mt-6 space-y-2.5 flex-1">
               {soloFeatures.map((f) => (
-                <li class="flex items-start gap-2"><span class="text-orange-400 font-bold mt-0.5">✓</span>{f}</li>
+                <li class={CHECK_BULLET}>
+                  <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
+                  {f}
+                </li>
               ))}
             </ul>
-            <a href={LOGIN_URL} class="block w-full text-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm py-2.5 rounded-xl transition-colors">Start Free Trial</a>
+            <a href={LOGIN_URL} class={`${BTN_OUTLINE} mt-7 w-full`}>Start Free Trial</a>
           </div>
 
-          {/* Team */}
-          <div class="rounded-2xl p-7 text-left relative" style="background: #FF8C00; border: 1px solid #FF8C00;">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-orange-600 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">Most Popular</div>
-            <div class="text-xs font-bold uppercase tracking-widest text-white/80 mb-2">Team</div>
-            <div class="text-4xl font-extrabold text-white mb-1">$49<span class="text-lg font-normal text-white/70">/mo</span></div>
-            <div class="text-sm text-white/80 mb-5 leading-snug">For businesses with a crew and more than one location.</div>
-            <ul class="space-y-2 mb-6 text-sm text-white/90">
+          <div class="bg-white border-2 border-navy rounded-card p-7 flex flex-col relative">
+            <div class="absolute -top-3 left-6 rounded-full bg-orange text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1">Most Popular</div>
+            <div class={EYEBROW}>Team</div>
+            <div class="text-4xl font-black text-ink tracking-tight">$49<span class="text-base font-semibold text-ink-secondary">/mo</span></div>
+            <p class="mt-2 text-sm font-medium text-ink-body leading-relaxed">For businesses with a crew and more than one location.</p>
+            <ul class="mt-6 space-y-2.5 flex-1">
               {teamFeatures.map((f) => (
-                <li class="flex items-start gap-2"><span class="font-bold mt-0.5">✓</span>{f}</li>
+                <li class={CHECK_BULLET}>
+                  <span class={CHECK_DOT}><Icon name="Check" class="w-3 h-3" strokeWidth={3} /></span>
+                  {f}
+                </li>
               ))}
             </ul>
-            <a href={LOGIN_URL} class="block w-full text-center text-white font-bold text-sm py-2.5 rounded-xl transition-colors hover:opacity-90" style="background: #1a2e5a;">Start Free Trial</a>
+            <a href={LOGIN_URL} class={`${BTN_PRIMARY} mt-7 w-full`}>Start Free Trial</a>
           </div>
         </div>
 
-        <div class="max-w-xl mx-auto mt-6 bg-white/5 border border-white/10 rounded-2xl p-5 text-sm text-white/70 leading-relaxed">
-          Want calls and texts inside CleanQuote? Add the <span class="text-white font-semibold">Communications Hub</span> — a dedicated business line with browser calling, voicemail, and two-way SMS — for <span style="color:#FF8C00;" class="font-semibold">$39/month</span>. It's the one optional add-on; your core CRM has no per-feature upsells.
+        <div class="max-w-3xl mx-auto mt-4 bg-orange-panel border border-orange-panel-border rounded-card p-5 flex gap-4 items-start">
+          <div class="w-11 h-11 rounded-xl bg-white border border-orange-panel-border text-orange-deeper flex items-center justify-center flex-shrink-0">
+            <Icon name="MessageSquare" class="w-5 h-5" />
+          </div>
+          <p class="text-sm font-medium text-ink-body leading-relaxed">
+            Want calls and texts inside CleanQuote? Add the <span class="font-bold text-ink">Communications Hub</span> — a dedicated business line with browser calling, voicemail, and two-way SMS — for <span class="font-bold text-orange-deeper">$39/month</span>. It's the one optional add-on; your core CRM has no per-feature upsells.
+          </p>
         </div>
 
-        <p class="mt-6 text-white/40 text-sm">14-day free trial · No credit card required · Cancel anytime</p>
+        <p class="mt-8 text-center text-sm font-medium text-ink-secondary">14-day free trial · No credit card required · Cancel anytime</p>
       </div>
     </section>
 
     {/* ── §20 FINAL CTA ── */}
-    <section class="py-20 px-6 text-center" style="background: linear-gradient(135deg, #c96a00, #FF8C00);">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
-        Quote your next house<br />in CleanQuote
-      </h2>
-      <p class="text-white/85 text-base max-w-md mx-auto mb-8 leading-relaxed">
-        Import your customers, price a job in under a minute, and send a quote that books itself.
-        Free 14-day trial, no card required.
-      </p>
-      <a
-        href={LOGIN_URL}
-        class="inline-flex items-center gap-2 bg-white font-extrabold text-base rounded-2xl px-8 py-4 shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all"
-        style="color: #c96a00;"
-      >
-        Start Free Trial → No Card Required
-      </a>
-      <p class="mt-4 text-white/70 text-sm">Set up in an afternoon. Bring your existing customers with you.</p>
+    <section class="bg-page py-20 px-6">
+      <div class="max-w-5xl mx-auto bg-navy rounded-card px-6 py-14 md:px-16 md:py-16 text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight mb-4">
+          Quote your next house<br class="hidden md:block" /> in CleanQuote
+        </h2>
+        <p class="text-base font-medium text-ink-on-navy-dim max-w-md mx-auto mb-8 leading-relaxed">
+          Import your customers, price a job in under a minute, and send a quote that books itself.
+          Free 14-day trial, no card required.
+        </p>
+        <a href={LOGIN_URL} class={`${BTN_SECONDARY} !px-8 !py-3.5 !text-base`}>
+          Start Free Trial
+          <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} />
+        </a>
+        <p class="mt-5 text-sm font-medium text-ink-on-navy-dim">No card required. Set up in an afternoon and bring your existing customers with you.</p>
+      </div>
     </section>
+  </main>
 
-    {/* ── §21 FOOTER ── */}
-    <footer class="bg-[#111d3a] text-white/50 py-12 px-6">
-      <div class="max-w-5xl mx-auto grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-        <div class="sm:col-span-2 md:col-span-1">
-          <img src={LOGO_URL} alt="CleanQuote" width="140" height="40" class="h-9 w-auto object-contain brightness-0 invert opacity-90 mb-3" />
-          <p class="text-xs text-white/40 leading-relaxed max-w-xs">
-            The pricing calculator and CRM built for residential cleaning companies.
-          </p>
-        </div>
-        <div>
-          <div class="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Product</div>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#calculator" class="hover:text-white/80 transition-colors">Calculators</a></li>
-            <li><a href="#features" class="hover:text-white/80 transition-colors">Features</a></li>
-            <li><a href="#pricing" class="hover:text-white/80 transition-colors">Pricing</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Get started</div>
-          <ul class="space-y-2 text-sm">
-            <li><a href={LOGIN_URL} class="hover:text-white/80 transition-colors">Start free trial</a></li>
-            <li><a href={LOGIN_URL} class="hover:text-white/80 transition-colors">Log in</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Legal</div>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/privacy-policy/" class="hover:text-white/80 transition-colors">Privacy</a></li>
-            <li><a href="/terms-and-conditions/" class="hover:text-white/80 transition-colors">Terms</a></li>
-            <li><a href="/sms-consent/" class="hover:text-white/80 transition-colors">SMS Consent</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="max-w-5xl mx-auto border-t border-white/10 pt-6 text-center text-xs text-white/35">
-        © 2026 CleanQuote · Built for residential cleaning businesses
-      </div>
-    </footer>
+  <Footer home />
 
-    {/* ── LIGHTBOX ── */}
-    <div
-      id="lightbox"
-      class="fixed inset-0 hidden items-center justify-center bg-black/90 p-4 sm:p-8 cursor-zoom-out"
-      style="z-index: 9999;"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Enlarged screenshot"
-      aria-hidden="true"
+  {/* ── LIGHTBOX ── */}
+  <div
+    id="lightbox"
+    class="fixed inset-0 hidden items-center justify-center bg-navy-deep/90 p-4 sm:p-8 cursor-zoom-out"
+    style="z-index: 9999;"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Enlarged screenshot"
+    aria-hidden="true"
+  >
+    <button
+      id="lightbox-close"
+      type="button"
+      aria-label="Close enlarged image"
+      class="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-white text-ink flex items-center justify-center z-10"
     >
-      <button
-        id="lightbox-close"
-        type="button"
-        aria-label="Close enlarged image"
-        class="absolute top-3 right-4 sm:top-5 sm:right-6 text-white/80 hover:text-white text-4xl leading-none font-light z-10"
-      >
-        &times;
-      </button>
-      <figure class="flex flex-col items-center gap-3 max-w-full max-h-full">
-        <img
-          id="lightbox-img"
-          src=""
-          alt=""
-          class="max-w-full max-h-[82vh] w-auto h-auto object-contain rounded-2xl shadow-2xl border border-white/10 bg-white"
-        />
-        <figcaption id="lightbox-cap" class="text-center text-white/70 text-xs sm:text-sm max-w-2xl leading-snug px-2"></figcaption>
-      </figure>
-    </div>
+      <Icon name="X" class="w-5 h-5" strokeWidth={2.5} />
+    </button>
+    <figure class="flex flex-col items-center gap-3 max-w-full max-h-full">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-w-full max-h-[82vh] w-auto h-auto object-contain rounded-card bg-white"
+      />
+      <figcaption id="lightbox-cap" class="text-center text-white/80 text-xs sm:text-sm font-medium max-w-2xl leading-snug px-2"></figcaption>
+    </figure>
   </div>
 
   <script>

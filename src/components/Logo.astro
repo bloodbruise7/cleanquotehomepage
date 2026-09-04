@@ -1,0 +1,14 @@
+---
+// Flat CleanQuote wordmark: "Clean" in navy, "Quote" in orange (white "Clean" on navy backgrounds).
+interface Props {
+  variant?: 'default' | 'on-navy';
+  class?: string;
+}
+
+const { variant = 'default', class: className = 'text-2xl' } = Astro.props;
+const cleanColor = variant === 'on-navy' ? 'text-white' : 'text-navy';
+---
+
+<span class={`inline-flex items-baseline font-extrabold tracking-wordmark leading-none select-none ${className}`}>
+  <span class={cleanColor}>Clean</span><span class="text-orange">Quote</span>
+</span>
