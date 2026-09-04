@@ -177,7 +177,7 @@ const everything = [
 const plans = [
   {
     name: 'Solo Operator',
-    price: '$29',
+    price: '$39',
     tagline: 'One login. Every feature.',
     featured: false,
     features: [
@@ -190,7 +190,7 @@ const plans = [
   },
   {
     name: 'Team Authority',
-    price: '$49',
+    price: '$69',
     tagline: 'Up to 5 team users.',
     featured: true,
     features: [
@@ -203,12 +203,13 @@ const plans = [
   },
   {
     name: 'Enterprise',
-    price: '$89',
-    tagline: 'Up to 15 team users.',
+    price: '$99',
+    tagline: 'Up to 15 team users, then $9/month per extra seat.',
     featured: false,
     features: [
       'Everything in Team',
       'Room for a bigger crew across more branches',
+      'Add seats past 15 for $9/month each',
       'A phone number per location with the Hub',
     ],
   },
@@ -233,7 +234,7 @@ const faqs = [
   },
   {
     q: 'What does the Communications Hub cost?',
-    a: '$39 a month on any plan for a dedicated number, two-way texting, and calling from the dashboard. Extra numbers are $5 a month each.',
+    a: '$49 a month on any plan for a dedicated number, two-way texting, and calling from the dashboard. Extra numbers are $5 a month each.',
   },
 ];
 
@@ -248,9 +249,9 @@ const softwareSchema = {
   description:
     'CleanQuote is the pricing and operations system for residential cleaning businesses: a time-first pricing calculator that recalibrates from timed visits, plus quotes, scheduling, time tracking, invoicing, Stripe payments, texting, a customer portal, and an MCP server.',
   offers: [
-    { '@type': 'Offer', name: 'Solo Operator', price: '29', priceCurrency: 'USD' },
-    { '@type': 'Offer', name: 'Team Authority', price: '49', priceCurrency: 'USD' },
-    { '@type': 'Offer', name: 'Enterprise', price: '89', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Solo Operator', price: '39', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Team Authority', price: '69', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Enterprise', price: '99', priceCurrency: 'USD' },
   ],
 };
 const faqSchema = {
@@ -315,7 +316,7 @@ const CTA_ROW = 'inline-flex flex-wrap items-center gap-3';
           </div>
 
           <p class="mt-5 text-sm font-medium text-ink-secondary">
-            14 days free. No credit card. Plans from $29 a month.
+            14 days free. No credit card. Plans from $39 a month.
           </p>
         </div>
 
@@ -844,7 +845,7 @@ const CTA_ROW = 'inline-flex flex-wrap items-center gap-3';
 
           <div class="inline-flex items-start gap-3 bg-orange-panel border border-orange-panel-border rounded-xl px-4 py-3 text-sm font-medium text-ink-body">
             <Icon name="Phone" class="w-4 h-4 mt-0.5 text-orange-deeper flex-shrink-0" />
-            <span><span class="font-bold text-ink">$39/month</span> on any plan. Extra numbers are $5/month each. Owners and office staff can use it; cleaners can't.</span>
+            <span><span class="font-bold text-ink">$49/month</span> on any plan. Extra numbers are $5/month each. Owners and office staff can use it; cleaners can't.</span>
           </div>
         </div>
 
@@ -1124,7 +1125,7 @@ const CTA_ROW = 'inline-flex flex-wrap items-center gap-3';
             <Icon name="MessageSquare" class="w-5 h-5" />
           </div>
           <p class="text-sm font-medium text-ink-body leading-relaxed">
-            Want texting and calling from a real business number? Add the <span class="font-bold text-ink">Communications Hub</span> for <span class="font-bold text-orange-deeper">$39/month</span> on any plan. It's the only add-on. Extra numbers are $5/month each.
+            Want texting and calling from a real business number? Add the <span class="font-bold text-ink">Communications Hub</span> for <span class="font-bold text-orange-deeper">$49/month</span> on any plan. It's the only add-on. Extra numbers are $5/month each.
           </p>
         </div>
 
@@ -1161,7 +1162,7 @@ const CTA_ROW = 'inline-flex flex-wrap items-center gap-3';
           Start Free Trial
           <Icon name="ArrowRight" class="w-4 h-4" strokeWidth={2.5} />
         </a>
-        <p class="mt-5 text-sm font-medium text-ink-on-navy-dim">14 days free. No card. $29 a month after that.</p>
+        <p class="mt-5 text-sm font-medium text-ink-on-navy-dim">14 days free. No card. $39 a month after that.</p>
       </div>
     </section>
   </main>
