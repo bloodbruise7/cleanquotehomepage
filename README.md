@@ -2,7 +2,7 @@
 
 Static marketing site for [thecleanquote.com](https://thecleanquote.com), built with
 [Astro](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/) and deployed
-to **Cloudflare Pages**.
+to **Cloudflare Workers** via Workers Builds (config in `wrangler.jsonc`).
 
 The app itself lives at <https://app.thecleanquote.com> — every login / "Start Free Trial"
 link on this site sends the user to `https://app.thecleanquote.com`.
@@ -11,43 +11,48 @@ link on this site sends the user to `https://app.thecleanquote.com`.
 
 | URL                                  | Source                                          |
 | ------------------------------------ | ----------------------------------------------- |
-| `/`                                  | `src/pages/index.astro` (TheSystem landing)     |
+| `/`                                  | `src/pages/index.astro` (landing page)          |
 | `/sms-consent/`                      | `src/pages/sms-consent/index.astro`             |
 | `/privacy-policy/`                   | `src/pages/privacy-policy/index.astro`          |
 | `/terms-and-conditions/`             | `src/pages/terms-and-conditions/index.astro`    |
+
+## Brand & design system
+
+The site follows the CleanQuote design system: Poppins, off-white `#f6f8fb` pages, flat
+white cards with 1px `#e6eaf1` borders and 16px radius (no drop shadows at rest), navy
+`#003366` for primary actions and orange `#FF8C00` for secondary CTAs / attention, pill
+buttons, and uppercase eyebrow labels. Tokens live in `tailwind.config.mjs`
+(`navy`, `orange`, `page`, `ink`, `line`, …).
+
+- `src/components/Logo.astro` — the flat text wordmark ("Clean" navy + "Quote" orange).
+  No image logo is used anywhere on the site.
+- `public/favicon.svg` (+ PNG sizes) — navy rounded square with an orange check.
+- `src/components/Icon.astro` — inline [Lucide](https://lucide.dev) icons via `lucide-static`
+  (no emoji, no icon PNGs).
+- `src/components/Nav.astro`, `Footer.astro`, `LegalPage.astro` — shared chrome.
+- `src/site.ts` — shared URLs and class tokens (`BTN_PRIMARY`, `EYEBROW`, `CARD`, …).
 
 ## Local development
 
 ```bash
 npm install
 npm run dev      # http://localhost:4321
-npm run build    # outputs static site to ./dist
-npm run preview  # serve the built site locally
+npm run build    # outputs the site to ./dist
+npm run preview  # build, then serve locally with wrangler
 ```
 
-## Deploy — Cloudflare Pages
+## Deploy — Cloudflare Workers
 
-This is a fully static Astro build (no SSR/adapter) so Cloudflare Pages can serve it
-as-is.
-
-1. Connect this GitHub repo in Cloudflare Pages.
-2. Build settings:
-   - **Framework preset:** Astro
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Node version:** `20` (set `NODE_VERSION=20` env var if needed)
-3. Production branch: `main`.
-4. Add the custom domain `thecleanquote.com` (apex) under *Custom domains*.
+Pushes to `main` build and deploy through Workers Builds (`npm run build`, then
+`npx wrangler deploy`); other branches get a preview version (`npx wrangler versions upload`).
+`wrangler.jsonc` must stay in the repo — preview builds fail without it. The Worker name is
+`cleanquotehomepage` and serves `dist/` as static assets via the `@astrojs/cloudflare` adapter.
 
 Astro is configured with `trailingSlash: 'ignore'` and `build.format: 'directory'`, so
-each route is emitted as `<route>/index.html` — Cloudflare Pages serves both
-`/sms-consent` and `/sms-consent/` correctly.
+each route is emitted as `<route>/index.html` and both `/sms-consent` and `/sms-consent/`
+resolve.
 
 ## Static assets
 
-Screenshots used by the homepage live in `public/images/`:
-
-- `calc-desktop.jpg` — hero calculator screenshot
-- `calc-mobile.jpg` — calculator section
-- `dashboard.jpg` — recalibration engine section
-- `timesheets.jpg` — time-tracking section
+Screenshots used by the homepage live in `public/images/` (`*.webp`), along with the SMS
+consent evidence images (`phoneplancheckbox.png`, `verbalconsentrecord.png`).

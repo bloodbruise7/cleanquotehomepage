@@ -1,0 +1,51 @@
+---
+// Shared shell for the legal pages: nav, a single flat card holding the document, footer.
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { EYEBROW, SITE_URL } from '../site';
+
+interface Section {
+  intro?: string;
+  title?: string;
+  body?: string;
+}
+
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+  path: string;
+  lastUpdated?: string;
+  sections?: Section[];
+}
+
+const { title, heading, description, path, lastUpdated, sections = [] } = Astro.props;
+const url = `${SITE_URL}${path}`;
+---
+
+<Layout title={title} description={description} canonical={url} ogTitle={title} ogDescription={description} ogUrl={url}>
+  <Nav />
+
+  <main class="px-6 py-12 md:py-16">
+    <article class="max-w-3xl mx-auto bg-white border border-line-card rounded-card px-6 py-10 md:px-12 md:py-14">
+      <div class={EYEBROW}>Legal</div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-ink tracking-tight leading-tight">{heading}</h1>
+      {lastUpdated && <p class="mt-2 text-sm font-medium text-ink-muted">Last updated {lastUpdated}</p>}
+
+      <div class="mt-8 space-y-8 text-[15px] text-ink-body font-medium leading-relaxed">
+        <slot>
+          {sections.map((section) => (
+            <section>
+              {section.intro && <p class="whitespace-pre-line">{section.intro}</p>}
+              {section.title && <h2 class="text-xl font-bold text-ink mb-3">{section.title}</h2>}
+              {section.body && <p class="whitespace-pre-line">{section.body}</p>}
+            </section>
+          ))}
+        </slot>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

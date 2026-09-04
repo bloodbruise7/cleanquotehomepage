@@ -1,9 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import LegalPage from '../../components/LegalPage.astro';
 
 const LAST_UPDATED = 'March 19, 2026';
-const LOGO_URL =
-  'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6966ac3f075c93d04f0065ad/f52e9713f_file_00000000d788722f8d707c0fc8248d08.png';
 
 const sections = [
   {
@@ -173,44 +171,11 @@ info@thecleanquote.com`,
 ];
 ---
 
-<Layout
+<LegalPage
   title="Privacy Policy — CleanQuote"
+  heading="Privacy Policy"
   description="How CleanQuote LLC collects, uses, discloses, and protects personal information across our website, platform, and related services."
-  canonical="https://thecleanquote.com/privacy-policy/"
-  ogTitle="Privacy Policy — CleanQuote"
-  ogDescription="How CleanQuote LLC collects, uses, discloses, and protects personal information across our website, platform, and related services."
-  ogUrl="https://thecleanquote.com/privacy-policy/"
->
-  <div class="min-h-screen bg-white">
-    <div class="max-w-3xl mx-auto px-6 py-12">
-      <div class="flex justify-center mb-10">
-        <a href="/">
-          <img src={LOGO_URL} alt="CleanQuote" class="h-16 w-auto" />
-        </a>
-      </div>
-
-      <h1 class="text-3xl font-bold text-gray-900 text-center mb-2">Privacy Policy</h1>
-      <p class="text-sm text-gray-500 text-center mb-10">Last Updated: {LAST_UPDATED}</p>
-
-      <div class="space-y-8">
-        {sections.map((section) => (
-          <div>
-            {section.intro && (
-              <p class="text-gray-700 leading-relaxed whitespace-pre-line">{section.intro}</p>
-            )}
-            {section.title && (
-              <h2 class="text-xl font-semibold text-gray-900 mb-3">{section.title}</h2>
-            )}
-            {section.body && (
-              <p class="text-gray-700 leading-relaxed whitespace-pre-line">{section.body}</p>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div class="mt-16 pt-8 border-t border-gray-200 text-center">
-        <p class="text-sm text-gray-400">© 2026 CleanQuote LLC. All rights reserved.</p>
-      </div>
-    </div>
-  </div>
-</Layout>
+  path="/privacy-policy/"
+  lastUpdated={LAST_UPDATED}
+  sections={sections}
+/>
