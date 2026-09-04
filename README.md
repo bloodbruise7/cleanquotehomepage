@@ -54,5 +54,15 @@ resolve.
 
 ## Static assets
 
-Screenshots used by the homepage live in `public/images/` (`*.webp`), along with the SMS
-consent evidence images (`phoneplancheckbox.png`, `verbalconsentrecord.png`).
+Product screenshots used by the homepage live in `public/images/` as `*.webp`. They are
+crops of the 2x captures in the `cleanquote-screenshots` bundle (fictional demo tenant
+"Clearview Home Cleaning"), with the app sidebar trimmed and resized to 1400px wide at most.
+`hero-estimate.webp` is the priced-estimate panel of the calculator; `mobile-*.webp` are the
+390px phone captures. The SMS consent evidence images (`phoneplancheckbox.png`,
+`verbalconsentrecord.png`) also live here.
+
+Homepage copy is written from `cleanquote-feature-summary.md` (the code-verified feature
+inventory). Its "accuracy guardrails" section lists what must not be over-claimed: no
+pipeline drag-and-drop, the portal doesn't book new cleanings, the widget emails the
+estimate rather than showing a price, no GPS tracking, no payroll export, referral rewards
+not implemented.
