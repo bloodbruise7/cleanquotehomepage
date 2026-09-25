@@ -59,3 +59,37 @@ body {
 .ai {
   max-width: 1120px;
 }
+.calculator {
+  max-width: 1200px;
+}
+.calculator > main {
+  padding: 0;
+}
+.calculator .fixed {
+  position: absolute;
+  top: 24px !important;
+  right: 24px !important;
+}
+.quote {
+  max-width: 960px;
+}
+.quote > main {
+  padding: 0;
+}
+.timesheets {
+  max-width: 1040px;
+}
+.automations {
+  max-width: 1040px;
+}
+.automations main > div {
+  display: grid;
+  gap: 18px;
+}
+/* Privacy redaction: remove empty business/customer contact rows from QuoteView. */
+.quote .flex-1.min-w-0 > p {
+  display: none;
+}
+.quote .cq-panel-muted > .grid > .break-words:not(:first-child) {
+  display: none;
+}

@@ -1,16 +1,25 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Calculator from "@/pages/Calculator";
+import QuoteView from "@/pages/QuoteView";
+import TimesheetSettings from "@/components/settings/TimesheetSettingsTab";
+import { business } from "./fixture-data";
+import { installPublicDocumentAccess } from "@/lib/publicDocumentAccess";
+import AutomationRuleCard from "@/components/settings/automations/AutomationRuleCard";
 import { createRoot } from "react-dom/client";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import QuoteBookingSection from "@/components/quotes/QuoteBookingSection";
 import Organizer from "@/components/schedule/ScheduleOrganizerModal";
 import WeekView from "@/components/schedule/WeekView";
-import PriceDisplay from "@/components/calculator/PriceDisplayNew";
 import EmbedForm from "@/components/embed/EmbedCalculatorForm";
 import AiConnections from "@/components/settings/AIConnectionsTab";
 import "@/index.css";
 import "./style.css";
 const noop = () => {};
-const screen = new URLSearchParams(location.search).get("screen") || "pricing";
+installPublicDocumentAccess();
+const screen =
+  new URLSearchParams(location.search).get("screen") || "calculator";
 const suggestions = ["Sample home A", "Sample home B", "Sample home C"].map(
   (name, i) => ({
     visitId: `demo-${i}`,
@@ -56,45 +65,68 @@ function App() {
           <span>Product demonstration · Fictional data</span>
         </header>
         <main>
-          {screen === "pricing" && (
+          {screen === "calculator" && <Calculator />}
+          {screen === "quote" && <QuoteView />}
+          {screen === "timesheets" && (
             <>
-              <h1>A price built around this home</h1>
+              <h1>Timesheets & payroll settings</h1>
+              <TimesheetSettings business={business} setBusiness={noop} />
+            </>
+          )}
+          {screen === "automations" && (
+            <>
+              <h1>Follow up at the right moment</h1>
               <p className="fixture-note">
-                Example: 2,000 sq ft · 3 bedrooms · 2 bathrooms
+                Example lifecycle rules · No messages sent
               </p>
-              <PriceDisplay
-                lineItems={[
-                  { service_name: "Initial Cleaning", price: 325, hours: 5 },
+              <div>
+                {[
                   {
-                    service_name: "Bi-Weekly Cleaning",
-                    price: 195,
-                    hours: 3,
-                    is_optional: true,
+                    name: "A helpful nudge after the quote",
+                    trigger_stage: "quote_sent",
+                    trigger_days: 2,
+                    trigger_unit: "days",
+                    action_type: "both",
                   },
                   {
-                    service_name: "Weekly Cleaning",
-                    price: 156,
-                    hours: 2.4,
-                    is_optional: true,
+                    name: "Before the next clean",
+                    trigger_stage: "visit_upcoming",
+                    trigger_days: 24,
+                    trigger_unit: "hours",
+                    action_type: "sms",
                   },
                   {
-                    service_name: "Monthly Cleaning",
-                    price: 234,
-                    hours: 3.6,
-                    is_optional: true,
+                    name: "Check in after the clean",
+                    trigger_stage: "visit_completed",
+                    trigger_days: 2,
+                    trigger_unit: "hours",
+                    action_type: "email",
                   },
-                ]}
-                totalPrice={325}
-                business={{}}
-                onSaveQuote={noop}
-                sqft={2000}
-                soilLevel="average"
-                bedrooms={3}
-                bathrooms={2}
-                pets="no"
-                includeOven="no"
-                includeRefrigerator="no"
-              />
+                  {
+                    name: "Reconnect after cancelled service",
+                    trigger_stage: "cancelled",
+                    trigger_days: 30,
+                    trigger_unit: "days",
+                    action_type: "email",
+                  },
+                ].map((rule, i) => (
+                  <AutomationRuleCard
+                    key={i}
+                    rule={{
+                      ...rule,
+                      id: `demo-rule-${i}`,
+                      is_enabled: true,
+                      send_window_start: "09:00",
+                      send_window_end: "17:00",
+                      send_days: ["mon", "tue", "wed", "thu", "fri"],
+                    }}
+                    onToggle={noop}
+                    onSave={noop}
+                    onDelete={noop}
+                    smsLocked={false}
+                  />
+                ))}
+              </div>
             </>
           )}
           {screen === "booking" && (
@@ -167,7 +199,7 @@ function App() {
                 setApplyRefrigeratorToRecurring={noop}
                 applySoilToRecurring={false}
                 setApplySoilToRecurring={noop}
-                soilLevel="average"
+                soilLevel="normal"
                 setSoilLevel={noop}
                 showRecurring
                 includeInitial
@@ -204,4 +236,12 @@ function App() {
     </TooltipProvider>
   );
 }
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+  <QueryClientProvider
+    client={new QueryClient({ defaultOptions: { queries: { retry: false } } })}
+  >
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </QueryClientProvider>,
+);

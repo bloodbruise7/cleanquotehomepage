@@ -30,3 +30,5 @@ pnpm-debug.log*
 
 # Local screenshot sources and review artifacts
 .captures/
+scripts/product-captures/local-pricing.json
+scripts/product-captures/public/

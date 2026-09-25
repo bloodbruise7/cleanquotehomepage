@@ -22,7 +22,24 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: "@/services", replacement: path.resolve("services.js") },
+      {
+        find: "./AutomationRuleForm",
+        replacement: path.resolve("disabled-modal.jsx"),
+      },
+      ...[
+        "@/api/base44Client",
+        "@/lib/AuthContext",
+        "@/hooks/useBusiness",
+        "@/hooks/useActiveLocation",
+      ].map((find) => ({
+        find,
+        replacement: path.resolve("offline-context.js"),
+      })),
+      { find: /^@\/services$/, replacement: path.resolve("services.js") },
+      {
+        find: "@/components/calculator/CustomerInfoModal",
+        replacement: path.resolve("disabled-modal.jsx"),
+      },
       { find: "@", replacement: path.join(app, "src") },
     ],
     dedupe: ["react", "react-dom"],
