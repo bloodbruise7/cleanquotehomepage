@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'CleanQuote is the only system built specifically for residential cleaning businesses. Consistent quotes, accurate job timing, time tracking, invoicing, Stripe payments, and a recalibration engine that learns from your data.',
+  description = "Cleaning business software for tailored quotes, online booking, scheduling, invoicing and Stripe payments. CleanQuote plans start at $39/month.",
   canonical,
   ogTitle,
   ogDescription,
@@ -29,13 +29,17 @@ const {
     <meta name="theme-color" content="#003366" />
     {canonical && <link rel="canonical" href={canonical} />}
     {ogTitle && <meta property="og:title" content={ogTitle} />}
-    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    {ogDescription && (
+      <meta property="og:description" content={ogDescription} />
+    )}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="CleanQuote" />
     {ogUrl && <meta property="og:url" content={ogUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
     {ogTitle && <meta name="twitter:title" content={ogTitle} />}
-    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    {ogDescription && (
+      <meta name="twitter:description" content={ogDescription} />
+    )}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
@@ -50,6 +54,21 @@ const {
     <style is:global>
       html {
         scroll-behavior: smooth;
+      }
+      :focus-visible {
+        outline: 3px solid #c55d00;
+        outline-offset: 4px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   </head>

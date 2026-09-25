@@ -1,0 +1,182 @@
+---
+import Icon from "./Icon.astro";
+import { TRIAL_URL } from "../site";
+const plans = [
+  {
+    name: "Solo Operator",
+    price: 39,
+    description: "For the owner doing it all.",
+    seats: "Owner account",
+    items: [
+      "Calculator, widget & online booking",
+      "Scheduling, quotes & invoices",
+      "Stripe payments & AI connections",
+      "Client records & reporting",
+    ],
+  },
+  {
+    name: "Team Authority",
+    price: 69,
+    description: "For an owner with a cleaning team.",
+    seats: "Owner + 5 team members",
+    items: [
+      "Core quoting & operations tools",
+      "Team scheduling & time tracking",
+      "5 team members included",
+      "Upgrade as your team grows",
+    ],
+  },
+  {
+    name: "Enterprise",
+    price: 99,
+    description: "For a larger operation.",
+    seats: "Owner + 15 team members",
+    items: [
+      "Core quoting & operations tools",
+      "Team scheduling & time tracking",
+      "15 team members included",
+      "Extra members: $9/month each",
+    ],
+  },
+];
+---
+
+<section id="pricing" class="section pricing-section">
+  <div class="wrap">
+    <div class="section-heading centered">
+      <p class="section-label">More of your budget stays in your business</p>
+      <h2>
+        Serious software.
+        <br />
+        Surprisingly small bill.
+      </h2>
+      <p>
+        Start at $39/month. Grow your team without jumping to a $199 software
+        bill.
+      </p>
+    </div>
+    <div class="plans">
+      {plans.map((plan) => (
+        <article class:list={["plan", { "team-plan": plan.price === 69 }]}>
+          <div class="plan-heading">
+            <h3>{plan.name}</h3>
+            {plan.price === 69 && <span>Built for your crew</span>}
+          </div>
+          <p>{plan.description}</p>
+          <div class="plan-price">
+            ${plan.price}
+            <span>/month</span>
+          </div>
+          <strong class="plan-seats">{plan.seats}</strong>
+          <a
+            class:list={[
+              "button",
+              plan.price === 69 ? "button-orange" : "button-outline",
+            ]}
+            href={TRIAL_URL}
+          >
+            Start Free Trial
+          </a>
+          <ul>
+            {plan.items.map((item) => (
+              <li>
+                <Icon name="Check" class="w-4 h-4" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <p class="pricing-terms">
+      USD, billed monthly. 14-day free trial. No credit card required to start.
+    </p>
+    <div class="addons">
+      <strong>Optional, when you need them.</strong>
+      <span>
+        Communications Hub <b>$49/mo</b>
+      </span>
+      <span>
+        Extra phone numbers <b>$5/mo each</b>
+      </span>
+      <p>
+        Communication usage, payment processing and applicable taxes are
+        separate. Additional team seats are available on Enterprise at $9/month
+        each.
+      </p>
+    </div>
+    <div class="comparison">
+      <div class="comparison-heading">
+        <h3>Compare the monthly bill.</h3>
+        <p>
+          Selected team plans. Regular monthly pricing, without an annual
+          commitment or introductory discount.
+        </p>
+      </div>
+      <div
+        class="table-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Team subscription price comparison"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Plan</th>
+              <th scope="col">Included users</th>
+              <th scope="col">Monthly price</th>
+              <th scope="col">CleanQuote costs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cq-row">
+              <th scope="row">CleanQuote Team Authority</th>
+              <td>Owner + 5 team members</td>
+              <td>
+                <strong>$69</strong>
+              </td>
+              <td>Our everyday monthly price</td>
+            </tr>
+            <tr>
+              <th scope="row">Jobber Connect</th>
+              <td>5 users total</td>
+              <td>$199</td>
+              <td>
+                <strong>$130 less / month</strong>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Housecall Pro Essentials</th>
+              <td>5 users total</td>
+              <td>$189</td>
+              <td>
+                <strong>$120 less / month</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="comparison-note">
+        Checked September 25, 2026. USD subscription prices only; plans have
+        different features and limits. Annual pricing and promotions may be
+        lower. Add-ons, usage, taxes and processing fees are excluded. Sources:{" "}
+        <a
+          href="https://www.getjobber.com/pricing/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jobber pricing
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://www.housecallpro.com/pricing/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Housecall Pro pricing
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+</section>

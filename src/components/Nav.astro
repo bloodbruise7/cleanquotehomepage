@@ -1,36 +1,98 @@
 ---
-import Logo from './Logo.astro';
-import { LOGIN_URL, BTN_PRIMARY, BTN_OUTLINE } from '../site';
-
+import Logo from "./Logo.astro";
+import { LOGIN_URL, TRIAL_URL } from "../site";
 interface Props {
-  // Section anchors only resolve on the homepage; legal pages link back to "/#…".
   home?: boolean;
 }
-
 const { home = false } = Astro.props;
-const prefix = home ? '' : '/';
-const links = [
-  { href: `${prefix}#calculator`, label: 'Calculator' },
-  { href: `${prefix}#features`, label: 'Features' },
-  { href: `${prefix}#pricing`, label: 'Pricing' },
-];
+const prefix = home ? "" : "/";
 ---
 
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line-card">
-  <nav class="max-w-6xl mx-auto h-16 flex items-center justify-between px-6" aria-label="Primary">
-    <a href="/" aria-label="CleanQuote home" class="flex items-center">
+<header class="site-header">
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" aria-label="CleanQuote home">
       <Logo class="text-2xl" />
     </a>
-
-    <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-ink-body">
-      {links.map((l) => (
-        <a href={l.href} class="hover:text-navy transition-colors duration-150">{l.label}</a>
-      ))}
+    <div class="nav-sections">
+      <a href={`${prefix}#how-it-works`}>How it works</a>
+      <a href={`${prefix}#features`}>Features</a>
+      <a href={`${prefix}#pricing`}>Pricing</a>
     </div>
-
-    <div class="flex items-center gap-2.5">
-      <a href={LOGIN_URL} class={BTN_OUTLINE}>Log In</a>
-      <a href={LOGIN_URL} class={`${BTN_PRIMARY} hidden sm:inline-flex !px-5 !py-2.5`}>Start Free Trial</a>
+    <div class="nav-actions">
+      <a class="login-link" href={LOGIN_URL}>
+        Log In
+      </a>
+      <a class="nav-trial" href={TRIAL_URL}>
+        Start Free Trial
+      </a>
     </div>
   </nav>
 </header>
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #e6eaf1;
+    backdrop-filter: blur(12px);
+  }
+  .site-nav {
+    max-width: 1240px;
+    margin: auto;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px 28px;
+  }
+  .nav-sections,
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .nav-actions {
+    gap: 22px;
+  }
+  .nav-trial {
+    padding: 13px 21px;
+    background: #003366;
+    color: white;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .nav-trial:hover {
+    background: #002244;
+  }
+  .nav-sections a:hover,
+  .login-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  @media (max-width: 850px) {
+    .nav-sections {
+      display: none;
+    }
+  }
+  @media (max-width: 500px) {
+    .site-nav {
+      padding: 12px 18px;
+      gap: 10px;
+      min-height: 68px;
+    }
+    .site-nav :global(.text-2xl) {
+      font-size: 20px;
+    }
+    .nav-trial {
+      font-size: 12px;
+      padding: 12px 15px;
+    }
+    .login-link {
+      display: none;
+    }
+  }
+</style>
