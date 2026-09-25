@@ -54,3 +54,9 @@ The expanded homepage preserves the original booking, calculator, operations, pa
 - Calendar capture includes the Week selection, date header, Organize/Assigned controls, weekday headers, color legend and the complete working day. Source remains ccbd42e; no app source or live records changed.
 - Payroll heading now reads “Track with Timesheets. Run Payroll.” Plan names are Solo, Team, Enterprise, without an extra Team subtitle. Added a verified 64px white gap above the orange Communications Hub card.
 - Validation: production build, local reference audit, desktop and mobile layout inspection, asset privacy review, workday and assignment checks.
+
+## Realistic weekly calendar refinement
+- Replaced the crowded forty-visit example with sixteen fictional jobs and three consistent cleaner colors. Monday through Friday have 4, 3, 2, 5 and 2 jobs respectively.
+- Jobs run for 3–8 hours. The busiest days include one cleaner working 8–11 AM and noon–4 PM, another on longer deep/initial cleans, and a third working 10 AM–2 PM. Multiple stops for the same cleaner have an hour between jobs.
+- Captured the actual unmodified desktop Schedule.jsx page again using the existing isolated fixture. No real customer or employee data, live records, or app code changed. Homepage changes are limited to the calendar asset and its alternative text.
+- Validated all jobs stay within 8 AM–5 PM and no cleaner has overlapping assignments. Visually reviewed the new desktop capture.
