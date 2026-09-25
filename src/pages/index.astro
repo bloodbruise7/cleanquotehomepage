@@ -22,11 +22,12 @@ const steps = [
   {
     title: "They receive their own price.",
     short: "Tailored quote",
-    image: "demo-pricing",
-    alt: "CleanQuote pricing estimate showing fictional initial and biweekly cleaning options.",
+    image: "demo-customer-quote",
+    zoomImage: "demo-customer-quote-full",
+    alt: "Reliable Housekeeping customer-facing quote with a fictional customer, no contact details, and prices calculated using Portland settings.",
     body: "CleanQuote estimates the work using your pricing settings. The customer receives a quote by email to review and approve, with initial and recurring service options.",
     detail:
-      "The widget sends the quote privately. This preview shows the calculator inside CleanQuote.",
+      "Your logo. Your colors. Your prices. This is the customer-facing quote, shown with fictional customer details.",
   },
   {
     title: "They choose an available time.",
@@ -237,7 +238,7 @@ const faqs = [
               <figure>
                 <button
                   class="image-zoom"
-                  data-zoom={`/images/${step.image}.webp`}
+                  data-zoom={`/images/${step.zoomImage || step.image}.webp`}
                   aria-label={`Enlarge ${step.short.toLowerCase()} screenshot`}
                 >
                   <img
@@ -249,8 +250,9 @@ const faqs = [
                   />
                 </button>
                 <figcaption>
-                  Actual product preview with fictional details and example
-                  prices. Click to enlarge.
+                  Actual CleanQuote screens with fictional customer details.
+                  Quote prices calculated using Portland settings. Click to
+                  enlarge.
                 </figcaption>
               </figure>
             </div>
@@ -267,14 +269,15 @@ const faqs = [
           </span>
           <p class="section-label">The calculator behind the quote</p>
           <h2>
-            A three-bedroom home
+            A pricing calculator you can trust.
             <br />
-            isn’t the whole story.
+            Built on thousands of real cleanings.
           </h2>
           <p>
-            A first clean, a recurring visit and a move-out are different jobs.
-            Your estimates should account for the work, so you’re not pricing
-            every home from memory.
+            Stop guessing how much a clean should cost. CleanQuote uses smart
+            time-estimation math informed by thousands of real cleaning visits,
+            then applies the rates you choose. A first clean, a recurring visit
+            and a move-out each get a price that reflects the work involved.
           </p>
           <ul class="benefit-list">
             <li>
@@ -288,15 +291,17 @@ const faqs = [
             <li>
               <Icon name="Check" />
               <span>
-                <strong>A starting point grounded in real work.</strong> The
-                calculator is informed by thousands of real cleaning visits.
+                <strong>Your business. Your prices.</strong> Set your own rates,
+                including different rates by location. The calculator does the
+                estimating; you stay in control of what you charge.
               </span>
             </li>
             <li>
               <Icon name="Check" />
               <span>
-                <strong>It can learn from your team.</strong> Logged work feeds
-                calibration, helping estimates reflect how your company cleans.
+                <strong>A better fit as your business uses it.</strong> The
+                recalibration engine learns from logged cleaning time to refine
+                estimates around your team’s actual pace.
               </span>
             </li>
           </ul>
@@ -312,14 +317,21 @@ const faqs = [
           </div>
           <button
             class="image-zoom"
-            data-zoom="/images/demo-pricing.webp"
+            data-zoom="/images/demo-calculator-full.webp"
             aria-label="Enlarge the cleaning estimate screenshot"
           >
             <img
+              src="/images/demo-calculator-input.webp"
+              alt="Actual calculator home inputs: 2,000 square feet, three bedrooms, two bathrooms and Portland’s $60 target rate."
+              width="1200"
+              height="600"
+              loading="lazy"
+            />
+            <img
               src="/images/demo-pricing.webp"
-              alt="CleanQuote calculator displaying example initial and biweekly estimates and team time estimates."
-              width="1140"
-              height="698"
+              alt="Actual CleanQuote Pricing Calculator with a 2,000-square-foot sample home and Portland’s configured rate."
+              width="1060"
+              height="558"
               loading="lazy"
             />
           </button>
@@ -339,9 +351,9 @@ const faqs = [
         <div class="section-heading">
           <p class="section-label">Built for the work after the booking, too</p>
           <h2>
-            Fewer loose ends.
+            Let the Schedule Organizer
             <br />
-            More room to run your business.
+            plan your jobs automatically.
           </h2>
         </div>
         <div class="feature-split organizer-feature">
@@ -374,15 +386,25 @@ const faqs = [
               one appointment at a time.
             </h3>
             <p>
-              The Schedule Organizer helps place recurring work around preferred
-              days, cleaner availability and arrival times. Review its
-              suggestions and choose what to apply.
+              Turn a week of scheduling puzzles into a proposal you can review
+              and apply. The Schedule Organizer uses customer preferences,
+              cleaner availability and scheduling math to arrange jobs around
+              preferred days, arrival windows and team assignments.
             </p>
             <ul class="plain-benefits">
-              <li>Keep recurring visits organized.</li>
-              <li>Account for availability, travel and gaps.</li>
-              <li>See current and proposed assignments side by side.</li>
-              <li>Keep the final scheduling decision in your hands.</li>
+              <li>
+                Build scheduling suggestions for recurring visits automatically.
+              </li>
+              <li>
+                Balance customer preferences, availability, travel and gaps.
+              </li>
+              <li>
+                See partial matches and jobs that cannot fit, flagged for human
+                review.
+              </li>
+              <li>
+                Review the changes together, then apply the ones you choose.
+              </li>
             </ul>
             <a class="text-link" href={TRIAL_URL}>
               Put your schedule in order{" "}
@@ -390,6 +412,33 @@ const faqs = [
             </a>
           </div>
         </div>
+        <figure class="product-figure calendar-showcase">
+          <div class="showcase-heading">
+            <div>
+              <p class="section-label">The whole week, clearly laid out</p>
+              <h3>A schedule your team can actually follow.</h3>
+            </div>
+            <span>Desktop calendar · Fictional jobs</span>
+          </div>
+          <button
+            class="image-zoom"
+            data-zoom="/images/demo-schedule.webp"
+            aria-label="Enlarge the desktop cleaning calendar"
+          >
+            <img
+              src="/images/demo-schedule.webp"
+              alt="CleanQuote desktop week calendar with ten orderly fictional cleaning visits, organized by day and cleaner."
+              width="1200"
+              height="756"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            See job times and team assignments at a glance. As logged visits
+            inform recalibration, your future estimates can better reflect the
+            time your team needs.
+          </figcaption>
+        </figure>
         <div class="operations-grid">
           <article>
             <Icon name="Users" />
@@ -416,6 +465,165 @@ const faqs = [
               details and track time while the work is happening.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="team-time" class="section team-time-section">
+      <div class="wrap feature-split">
+        <div class="feature-copy">
+          <span class="feature-icon blue">
+            <Icon name="Timer" />
+          </span>
+          <p class="section-label">Timesheets, payroll & real working time</p>
+          <h2>
+            Less chasing hours.
+            <br />
+            More confidence on payday.
+          </h2>
+          <p>
+            Bring job time, breaks and payroll preparation into the same
+            workflow. Your team records the work; you get the hours you need to
+            review, without rebuilding the week from messages and memory.
+          </p>
+          <ul class="benefit-list">
+            <li>
+              <Icon name="Check" />
+              <span>
+                <strong>Set your lunch and break rules.</strong> Choose
+                durations and whether each is paid, so timesheets follow your
+                business settings.
+              </span>
+            </li>
+            <li>
+              <Icon name="Check" />
+              <span>
+                <strong>Give payroll a clear rhythm.</strong> Set weekly,
+                biweekly, twice-monthly or monthly pay periods. Review the
+                hours, confirm the period and export a CSV.
+              </span>
+            </li>
+            <li>
+              <Icon name="Check" />
+              <span>
+                <strong>Make tracked time work twice.</strong> Compare estimated
+                and actual cleaning time. Eligible logged visits also feed
+                recalibration, helping the calculator reflect how your team
+                works.
+              </span>
+            </li>
+          </ul>
+          <p class="small-note">
+            Payroll tools support hours, pay-period review and exports. Payroll
+            payments and tax filing are handled through your payroll process.
+          </p>
+        </div>
+        <figure class="product-figure time-visual">
+          <button
+            class="image-zoom"
+            data-zoom="/images/demo-timesheets.webp"
+            aria-label="Enlarge timesheet, lunch and break settings"
+          >
+            <img
+              src="/images/demo-timesheets.webp"
+              alt="Actual CleanQuote settings for pay periods, paid ten-minute breaks and unpaid thirty-minute lunches, using demonstration settings."
+              width="1040"
+              height="811"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Your pay schedule. Your break rules. Demonstration settings.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="automations" class="section automation-section">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="section-label">Sales pipeline & lifecycle automations</p>
+          <h2>
+            A new lead shouldn’t depend
+            <br />
+            on your next free minute.
+          </h2>
+          <p>
+            See where each opportunity stands, then build follow-ups around the
+            moments that matter. From the first inquiry to recurring service,
+            your pipeline tells you what needs attention—and your automations
+            help keep things moving.
+          </p>
+        </div>
+        <ol class="pipeline-path" aria-label="Example customer lifecycle">
+          <li>
+            <span>01</span>
+            <strong>New lead</strong>
+            <p>Start the conversation.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>Quote sent</strong>
+            <p>Follow up on the decision.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>Job booked</strong>
+            <p>Help them prepare.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <strong>Recurring customer</strong>
+            <p>Keep the relationship going.</p>
+          </li>
+        </ol>
+        <div class="feature-split automation-detail">
+          <div class="feature-copy">
+            <h3>
+              Your message. Your timing.
+              <br />A lot less remembering.
+            </h3>
+            <p>
+              Build automated emails and texts around pipeline stages, upcoming
+              visits, completed work and overdue invoices. Choose delays in
+              minutes, hours or days, then set the message and sending window.
+            </p>
+            <ul class="plain-benefits">
+              <li>Follow up when a quote has been waiting for a decision.</li>
+              <li>
+                Remind customers before a visit and check in after the clean.
+              </li>
+              <li>
+                Build different sequences for new leads, recurring clients and
+                cancelled service.
+              </li>
+              <li>Keep the next step visible in your sales pipeline.</li>
+            </ul>
+            <p class="small-note">
+              Custom automated texts require the Communications Hub and
+              messaging setup. Sending follows consent and contact preferences.
+              Voicemail automation configuration is also supported; delivery
+              requires the Hub and platform enablement and is paused by default.
+            </p>
+          </div>
+          <figure class="product-figure automation-visual">
+            <button
+              class="image-zoom"
+              data-zoom="/images/demo-automations.webp"
+              aria-label="Enlarge example lifecycle automation rules"
+            >
+              <img
+                src="/images/demo-automations.webp"
+                alt="Actual CleanQuote automation cards showing fictional quote follow-up, visit reminder and after-clean email rules."
+                width="1040"
+                height="701"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              Example rules in the real automation interface. No messages sent.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -450,7 +658,12 @@ const faqs = [
             <Icon name="ArrowRight" />
             <span>
               <Icon name="CircleCheck" />
-              Recorded
+              Record
+            </span>
+            <Icon name="ArrowRight" />
+            <span>
+              <Icon name="ChartNoAxesCombined" />
+              Reporting
             </span>
           </div>
           <ul class="plain-benefits">
@@ -496,18 +709,65 @@ const faqs = [
           </p>
         </article>
       </div>
-      <div class="wrap hub-row">
-        <Icon name="MessagesSquare" />
-        <div>
-          <h3>Need calls and texts in the same place?</h3>
+    </section>
+    <section id="communications" class="section communications-section">
+      <div class="wrap communications-card">
+        <div class="feature-copy">
+          <span class="feature-icon">
+            <Icon name="MessagesSquare" />
+          </span>
+          <p class="section-label">Optional Communications Hub</p>
+          <h2>
+            Keep the conversation
+            <br />
+            with the customer story.
+          </h2>
           <p>
-            Add the Communications Hub for a shared business inbox. Keep
-            customer conversations closer to the work.
+            A quote question, a schedule change, a quick update before the
+            clean. Give your team a shared place for business calls and texts,
+            with the customer’s work close at hand.
+          </p>
+          <a class="text-link" href="#pricing">
+            Add the Hub for $49/month{" "}
+            <Icon name="ArrowUpRight" class="w-4 h-4" />
+          </a>
+          <p class="small-note">
+            Additional numbers $5/month each. Usage charges apply separately.
+            Messaging setup required.
           </p>
         </div>
-        <a href="#pricing">
-          Optional add-on · $49/month <Icon name="ArrowDown" class="w-4 h-4" />
-        </a>
+        <div class="hub-benefits">
+          <article>
+            <Icon name="Phone" />
+            <div>
+              <h3>A shared business inbox</h3>
+              <p>
+                Keep calls and texts together so the next person helping the
+                customer has context.
+              </p>
+            </div>
+          </article>
+          <article>
+            <Icon name="Send" />
+            <div>
+              <h3>Follow-ups with your wording</h3>
+              <p>
+                Use custom text automations to follow up at the right stage,
+                with the timing and message you set.
+              </p>
+            </div>
+          </article>
+          <article>
+            <Icon name="Users" />
+            <div>
+              <h3>Less searching between tools</h3>
+              <p>
+                Keep customer conversations closer to their quotes, jobs and
+                visits.
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
     <Pricing />
@@ -613,6 +873,7 @@ const faqs = [
         img.alt = button.querySelector("img")?.alt || "Product screenshot";
         opener = button;
         dialog.showModal();
+        dialog.scrollTop = 0;
       }),
     );
   dialog?.addEventListener("click", (event) => {

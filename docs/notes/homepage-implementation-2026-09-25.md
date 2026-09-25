@@ -23,3 +23,28 @@ Review against brief: avoid a wall of equally weighted feature cards. Make the r
 
 ## Scope
 Marketing site only. Fixture imports actual app components and substitutes local responses. No live app records, accounts, messages, payments, or customer data created or changed.
+
+## Expanded product story — follow-up
+
+The expanded homepage preserves the original booking, calculator, operations, payments, AI, pricing and FAQ content while adding a desktop calendar, timesheets/payroll and break rules, lifecycle automations, and a dedicated Communications Hub section. Payment and AI cards now use related pale green and blue surfaces. The comparison row says CleanQuote Team; the actual plan card retains its product plan name.
+
+### Screenshot and price evidence
+- Rendered actual Calculator.jsx and QuoteView.jsx from app commit ccbd42e in an isolated local fixture. Auth, business and active-location hooks resolve fictional IDs; the live API client is disabled and external connections are blocked by CSP.
+- Read only the authorized Portland rate/calibration fields, residential platform parameters, brand logo/colors, and default service descriptions. No customer records were read or changed.
+- Portland target rate: $60 per labor hour, empty location calibration offsets. Example home: 2,000 sqft, 3 bedrooms, 2 bathrooms, regular soil, no pets or appliance extras. Actual calculator UI produced initial $426.64, weekly $187.84, biweekly $221.91, monthly $261.90 in the app's normal order.
+- Customer quote uses the same residential pricing engine and initial/biweekly results, Reliable Housekeeping logo/colors, and inherited platform service descriptions. Customer is Sample Customer; no business or customer address, phone or email is present. No quote was saved, approved, booked or sent.
+- Calendar: actual WeekView, ten fictional visits across October 5–9. Timesheet settings: actual TimesheetSettingsTab with fictional pay/break configuration. Automation rules: actual AutomationRuleCard with fictional rules; no messages are sent.
+- Local platform coefficients are ignored and excluded from the public repository. Screenshots are static; the homepage does not run the pricing engine.
+
+### Capability boundaries
+- Organizer generates a scheduling proposal and flags partial/unschedulable fits; the owner reviews and applies changes. Do not imply it silently books every job or always satisfies every preference.
+- Payroll source supports pay periods, confirmation/locking and CSV export. Marketing distinguishes preparation from payroll transfers and tax filing.
+- Custom SMS needs the Communications Hub and messaging setup. Automation triggers cover pipeline stages, upcoming/completed visits and overdue invoices. Voicemail configuration exists, but delivery is paused by default and requires Hub eligibility plus platform enablement; no sending was enabled or tested.
+- Recalibration uses eligible logged work to refine time estimates. Rates remain owner-controlled. Do not guarantee that every update monotonically improves accuracy.
+
+### Validation
+- Production build passed; existing Cloudflare/Sharp advisory is unchanged (all product screenshots are static WebP assets).
+- Local reference audit passed for all four pages and 81 link/image references.
+- Browser checks passed at desktop, 390px and 320px widths with no document overflow. Four-step payment flow fits at 320px.
+- Verified tailored-quote tab, full screenshot enlargement, scrollable long screenshots, Escape dismissal and focus restoration; calendar enlargement loads. Updated dialogs reset their scroll position on open.
+- Reviewed the calculator, customer quote, calendar, timesheets and automation captures for fictional data and removal of contact details.

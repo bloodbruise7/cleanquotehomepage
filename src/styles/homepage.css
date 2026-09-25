@@ -547,11 +547,13 @@
   border-radius: 24px;
 }
 .payment-feature {
-  background: #e6f4eb;
+  background: #edf5f2;
+  border: 1px solid #d5e5df;
 }
 .ai-feature {
-  background: #003366;
-  color: white;
+  background: #edf3fa;
+  color: #003366;
+  border: 1px solid #d3e0ef;
 }
 .connected-grid h2 {
   font-size: 34px;
@@ -561,7 +563,7 @@
   margin-top: 22px;
 }
 .home .ai-feature p {
-  color: #d6e5f5;
+  color: #445b74;
 }
 .home .ai-feature .small-note {
   font-size: 11px;
@@ -590,14 +592,14 @@
 }
 .ai-prompts {
   margin-top: 24px;
-  border-top: 1px solid #37628d;
+  border-top: 1px solid #c9d9eb;
   padding-top: 16px;
 }
 .ai-prompts > p {
   font-size: 11px;
 }
 .ai-prompts blockquote {
-  background: #164873;
+  background: #fff;
   padding: 13px 17px;
   border-radius: 12px 12px 0 12px;
   margin-top: 10px;
@@ -1219,4 +1221,204 @@
   .final-cta h2 {
     font-size: 32px;
   }
+}
+/* Expanded product story: quiet color, clear product evidence. */
+.calendar-showcase {
+  margin-top: 48px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #d9e4f0;
+  border-radius: 24px;
+}
+.showcase-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+.showcase-heading h3 {
+  font-size: 24px;
+  margin-top: 8px;
+}
+.showcase-heading > span {
+  color: #66768b;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.calendar-showcase img {
+  width: 100%;
+  height: auto;
+}
+.team-time-section {
+  background: #f4f7fc;
+}
+.time-visual {
+  padding: 18px;
+  background: #e4ecf7;
+  border-radius: 24px;
+}
+.time-visual img,
+.automation-visual img {
+  width: 100%;
+  height: auto;
+}
+.automation-section {
+  background: #fffaf2;
+}
+.automation-section .section-heading > p:last-child {
+  max-width: 730px;
+  margin: 22px auto 0;
+  line-height: 1.8;
+}
+.pipeline-path {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  padding: 0;
+  margin: 36px 0 52px;
+  border: 1px solid #eadcc9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+}
+.pipeline-path li {
+  padding: 25px;
+  border-right: 1px solid #eadcc9;
+}
+.pipeline-path li:last-child {
+  border: 0;
+}
+.pipeline-path span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #976023;
+  margin-bottom: 15px;
+}
+.pipeline-path strong {
+  font-size: 16px;
+  color: #003366;
+}
+.pipeline-path p {
+  font-size: 12px;
+  margin-top: 9px;
+}
+.automation-visual {
+  padding: 15px;
+  background: #f2e6d3;
+  border-radius: 20px;
+}
+.communications-section {
+  padding-top: 0;
+}
+.communications-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 70px;
+  padding: 54px;
+  background: #fff5e8;
+  border: 1px solid #f0dec6;
+  border-radius: 24px;
+}
+.communications-card h2 {
+  font-size: 36px;
+}
+.communications-card .text-link {
+  margin-top: 25px;
+}
+.hub-benefits {
+  display: grid;
+  align-content: center;
+  gap: 30px;
+}
+.hub-benefits article {
+  display: flex;
+  gap: 18px;
+}
+.hub-benefits svg {
+  flex-shrink: 0;
+  color: #96580c;
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+}
+.hub-benefits h3 {
+  font-size: 18px;
+}
+.hub-benefits p {
+  font-size: 13px;
+  margin-top: 8px;
+  line-height: 1.8;
+}
+@media (max-width: 900px) {
+  .communications-card {
+    gap: 32px;
+    padding: 35px;
+  }
+  .showcase-heading {
+    display: block;
+  }
+  .showcase-heading > span {
+    display: block;
+    margin-top: 12px;
+  }
+  .pipeline-path li {
+    padding: 20px;
+  }
+}
+@media (max-width: 640px) {
+  .communications-card {
+    grid-template-columns: 1fr;
+    padding: 28px 22px;
+  }
+  .communications-card h2 {
+    font-size: 29px;
+  }
+  .pipeline-path {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pipeline-path li {
+    border-bottom: 1px solid #eadcc9;
+  }
+  .pipeline-path li:nth-child(2) {
+    border-right: 0;
+  }
+  .pipeline-path li:nth-child(3) {
+    border-bottom: 0;
+  }
+  .calendar-showcase {
+    padding: 15px;
+  }
+  .showcase-heading h3 {
+    font-size: 20px;
+  }
+  .payment-flow {
+    gap: 6px;
+  }
+  .payment-flow > svg {
+    width: 11px;
+    flex-shrink: 0;
+  }
+  .payment-flow span {
+    font-size: 10px;
+  }
+}
+.calculator-visual .image-zoom img + img {
+  margin-top: 12px;
+}
+#image-dialog {
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+#image-dialog img {
+  width: 100%;
+  max-height: none;
+  height: auto;
+}
+.dialog-close {
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  z-index: 1;
 }

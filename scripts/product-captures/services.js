@@ -1,5 +1,22 @@
 // Offline responses only. These are fictional examples, never production records.
+import { business, quote, platform } from "./fixture-data";
+const disabledService = new Proxy(
+  {},
+  {
+    get: () => async () => {
+      throw new Error("No live services in screenshots");
+    },
+  },
+);
+export const quoteService = disabledService,
+  customerService = disabledService,
+  businessService = disabledService,
+  activityLogService = disabledService,
+  jobService = disabledService,
+  opportunityService = disabledService;
 export const fns = {
+  getPlatformSettings: async () => ({ data: { settings: platform } }),
+  getPublicQuote: async () => ({ data: { business, quote } }),
   getQuoteBookingSlots: async ({ preferred_date } = {}) => ({
     data: preferred_date
       ? {
