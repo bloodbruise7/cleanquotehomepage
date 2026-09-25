@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  background: #f6f8fb;
+  color: #16233a;
+}
+.capture-shell {
+  max-width: 1040px;
+  margin: 20px auto;
+  background: white;
+  border: 1px solid #e6eaf1;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.capture-shell > header {
+  padding: 19px 28px;
+  border-bottom: 1px solid #e6eaf1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #637087;
+}
+.wordmark {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #003366;
+}
+.wordmark span {
+  color: #ff8c00;
+}
+.capture-shell > main {
+  padding: 28px;
+}
+.capture-shell h1 {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.fixture-note {
+  color: #637087;
+  margin-bottom: 24px;
+}
+.pricing {
+  max-width: 1140px;
+}
+.booking {
+  max-width: 850px;
+}
+.widget {
+  max-width: 740px;
+}
+.schedule {
+  max-width: 1200px;
+}
+.schedule main > div {
+  max-height: 520px;
+}
+.ai {
+  max-width: 1120px;
+}

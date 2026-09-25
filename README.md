@@ -4,8 +4,9 @@ Static marketing site for [thecleanquote.com](https://thecleanquote.com), built 
 [Astro](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/) and deployed
 to **Cloudflare Workers** via Workers Builds (config in `wrangler.jsonc`).
 
-The app itself lives at <https://app.thecleanquote.com> — every login / "Start Free Trial"
-link on this site sends the user to `https://app.thecleanquote.com`.
+The app itself lives at <https://app.thecleanquote.com>. Trial links go directly to
+`https://app.thecleanquote.com/Signup`; login links go to the app root. These URLs
+are shared in `src/site.ts`.
 
 ## Pages
 
@@ -18,11 +19,10 @@ link on this site sends the user to `https://app.thecleanquote.com`.
 
 ## Brand & design system
 
-The site follows the CleanQuote design system: Poppins, off-white `#f6f8fb` pages, flat
-white cards with 1px `#e6eaf1` borders and 16px radius (no drop shadows at rest), navy
-`#003366` for primary actions and orange `#FF8C00` for secondary CTAs / attention, pill
-buttons, and uppercase eyebrow labels. Tokens live in `tailwind.config.mjs`
-(`navy`, `orange`, `page`, `ink`, `line`, …).
+The site keeps the app's Poppins typography, navy `#003366`, orange `#FF8C00`, and
+pill buttons. The homepage adds warm orange, pale blue and mint sections, larger
+product previews and a keyboard-accessible booking tour. Layout and responsive
+rules live in `src/styles/homepage.css`; shared tokens remain in `tailwind.config.mjs`.
 
 - `src/components/Logo.astro` — the flat text wordmark ("Clean" navy + "Quote" orange).
   No image logo is used anywhere on the site.
@@ -54,15 +54,15 @@ resolve.
 
 ## Static assets
 
-Product screenshots used by the homepage live in `public/images/` as `*.webp`. They are
-crops of the 2x captures in the `cleanquote-screenshots` bundle (fictional demo tenant
-"Clearview Home Cleaning"), with the app sidebar trimmed and resized to 1400px wide at most.
-`hero-estimate.webp` is the priced-estimate panel of the calculator; `mobile-*.webp` are the
-390px phone captures. The SMS consent evidence images (`phoneplancheckbox.png`,
-`verbalconsentrecord.png`) also live here.
+The homepage uses four `public/images/demo-*.webp` images captured from actual
+CleanQuote React components running locally with fictional fixtures. No production
+customer records are used. See `scripts/product-captures/README.md` for provenance
+and capture instructions. Older screenshots and SMS consent evidence assets remain
+available for existing references.
 
-Homepage copy is written from `cleanquote-feature-summary.md` (the code-verified feature
-inventory). Its "accuracy guardrails" section lists what must not be over-claimed: no
-pipeline drag-and-drop, the portal doesn't book new cleanings, the widget emails the
-estimate rather than showing a price, no GPS tracking, no payroll export, referral rewards
-not implemented.
+The latest homepage research and implementation evidence are in `docs/notes/`.
+The older `cleanquote-feature-summary.md` is historical; verify capabilities against
+current app code before changing claims. The widget emails a tailored estimate,
+eligible approved quotes can offer online booking, and example prices are fictional.
+The competitor comparison uses dated official sources and regular monthly team
+plans, without claiming feature parity or universally lowest pricing.
