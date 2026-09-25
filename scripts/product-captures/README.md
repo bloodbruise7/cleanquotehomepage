@@ -9,7 +9,7 @@ These assets are browser screenshots of actual CleanQuote React components rende
 | demo-customer-quote / demo-customer-quote-full | QuoteView.jsx | Reliable Housekeeping branding, fictional customer, initial and biweekly calculated prices |
 | demo-booking | QuoteBookingSection | Fictional date and arrival selection |
 | demo-organizer | ScheduleOrganizerModal | Proposed assignments for Sample homes A–C |
-| demo-schedule | WeekView | Ten fictional visits, October 5–9 |
+| demo-schedule | Full Schedule.jsx desktop page, ScheduleControls and WeekView | Forty fictional visits, five cleaners, September 21–25, 8 AM–5 PM |
 | demo-timesheets | TimesheetSettingsTab | Fictional pay-period and break settings |
 | demo-automations | AutomationRuleCard | Fictional lifecycle rules; no messages sent |
 
@@ -26,7 +26,13 @@ The quote has Sample Customer as its customer. No address, email or phone is sup
 3. Run `node node_modules/vite/bin/vite.js --config vite.config.mjs` here.
 4. Open `http://127.0.0.1:4391/?screen=calculator`. Enter 2,000 sqft, 3 bedrooms, 2 bathrooms, No for pets/oven/refrigerator, Recurring with initial/weekly/biweekly/monthly selected, and Regular soil. Do not save a quote. Verified results: $426.64 initial, $187.84 weekly, $221.91 biweekly, $261.90 monthly.
 5. Open `/QuoteView?screen=quote&token=fictional-local-token` for the local customer quote; it uses the same engine. Other screens: `widget`, `booking`, `organizer`, `schedule`, `timesheets`, `automations`.
-6. Save full-page browser PNGs to the ignored repository `.captures/` folder. The expanded capture names are `calculator-full.png`, `customer-quote-full.png`, `schedule.png`, `timesheets.png`, and `automations.png`.
+6. Save full-page browser PNGs to the ignored repository `.captures/` folder. The expanded capture names are `calculator-full.png`, `customer-quote-full.png`, `timesheets.png`, and `automations.png`.
 7. From the repository root, run `node scripts/finish-expanded-assets.mjs` to crop and encode the expanded images. The original `finish-assets.mjs` handles only booking, widget and organizer.
 
 Original browser viewport: 1280 × 720; full-page captures with a scrollbar are 1270px wide. Crop coordinates depend on this viewport and must be reviewed if the app changes. The homepage shows input/result excerpts and a quote excerpt; enlarged views show the complete captured screens in a scrollable dialog.
+
+## Desktop calendar capture
+
+The calendar uses the full unmodified Schedule.jsx page, with offline visit/job/roster responses in desktop-schedule-data.js. View-only modal dependencies are disabled. The capture shell adds a five-person color legend and an explicit fictional-data label. No customer or employee records are read or changed.
+
+Use a 1920 × 1000 desktop viewport, select Week and Hide Weekends, and use the date picker to select September 21–25, 2026 if needed. Scroll the calendar to 8 AM. Capture the top 1910 × 930 pixels as `.captures/desktop-schedule-full.png`, then run `node scripts/finish-desktop-calendar.mjs`. This replaces the previous stripped-down, ten-visit calendar image. The generated asset is 1840 × 910. All forty jobs finish by 5 PM; no cleaner is double-booked.

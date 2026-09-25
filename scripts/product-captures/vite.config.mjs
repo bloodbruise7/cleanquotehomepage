@@ -22,6 +22,16 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
+      ...[
+        "@/components/visits/VisitDetailModal",
+        "@/components/tasks/TaskFormModal",
+        "@/components/tasks/TaskDetailModal",
+        "@/components/schedule/CompleteVisitDialog",
+        "@/components/schedule/OrganizerSetupDialog",
+      ].map((find) => ({
+        find,
+        replacement: path.resolve("disabled-modal.jsx"),
+      })),
       {
         find: "./AutomationRuleForm",
         replacement: path.resolve("disabled-modal.jsx"),

@@ -12,7 +12,6 @@ const capture = async (name, width, top = 20, height) => {
     .webp({ quality: 90 })
     .toFile(`public/images/demo-${name}.webp`);
 };
-await capture("schedule", 1200);
 await capture("timesheets", 1040);
 await capture("automations", 1040);
 await capture("customer-quote-full", 960);

@@ -48,3 +48,9 @@ The expanded homepage preserves the original booking, calculator, operations, pa
 - Browser checks passed at desktop, 390px and 320px widths with no document overflow. Four-step payment flow fits at 320px.
 - Verified tailored-quote tab, full screenshot enlargement, scrollable long screenshots, Escape dismissal and focus restoration; calendar enlargement loads. Updated dialogs reset their scroll position on open.
 - Reviewed the calculator, customer quote, calendar, timesheets and automation captures for fictional data and removal of contact details.
+
+## Desktop calendar and label corrections
+- Replaced the ten-visit component example with the full desktop Schedule.jsx page and native toolbar. Forty fictional jobs across five fictional cleaners have varied service types, durations, times and profile colors, all within 8 AM–5 PM. Validated that no cleaner has overlapping assignments.
+- Calendar capture includes the Week selection, date header, Organize/Assigned controls, weekday headers, color legend and the complete working day. Source remains ccbd42e; no app source or live records changed.
+- Payroll heading now reads “Track with Timesheets. Run Payroll.” Plan names are Solo, Team, Enterprise, without an extra Team subtitle. Added a verified 64px white gap above the orange Communications Hub card.
+- Validation: production build, local reference audit, desktop and mobile layout inspection, asset privacy review, workday and assignment checks.

@@ -3,7 +3,7 @@ import Icon from "./Icon.astro";
 import { TRIAL_URL } from "../site";
 const plans = [
   {
-    name: "Solo Operator",
+    name: "Solo",
     price: 39,
     description: "For the owner doing it all.",
     seats: "Owner account",
@@ -15,7 +15,7 @@ const plans = [
     ],
   },
   {
-    name: "Team Authority",
+    name: "Team",
     price: 69,
     description: "For an owner with a cleaning team.",
     seats: "Owner + 5 team members",
@@ -60,7 +60,6 @@ const plans = [
         <article class:list={["plan", { "team-plan": plan.price === 69 }]}>
           <div class="plan-heading">
             <h3>{plan.name}</h3>
-            {plan.price === 69 && <span>Built for your crew</span>}
           </div>
           <p>{plan.description}</p>
           <div class="plan-price">

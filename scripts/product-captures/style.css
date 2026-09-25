@@ -93,3 +93,35 @@ body {
 .quote .cq-panel-muted > .grid > .break-words:not(:first-child) {
   display: none;
 }
+.schedule {
+  max-width: 1840px;
+}
+.schedule > main {
+  padding: 0;
+}
+.schedule main > div {
+  max-height: none;
+}
+.schedule .crew-legend {
+  padding: 15px 24px;
+  display: flex;
+  gap: 26px;
+  font-size: 13px;
+  align-items: center;
+  border-bottom: 1px solid #e6eaf1;
+}
+.crew-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.crew-legend i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.crew-legend em {
+  margin-left: auto;
+  color: #637087;
+  font-style: normal;
+}
