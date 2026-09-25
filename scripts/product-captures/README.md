@@ -9,7 +9,7 @@ These assets are browser screenshots of actual CleanQuote React components rende
 | demo-customer-quote / demo-customer-quote-full | QuoteView.jsx | Reliable Housekeeping branding, fictional customer, initial and biweekly calculated prices |
 | demo-booking | QuoteBookingSection | Fictional date and arrival selection |
 | demo-organizer | ScheduleOrganizerModal | Proposed assignments for Sample homes A–C |
-| demo-schedule | Full Schedule.jsx desktop page, ScheduleControls and WeekView | Forty fictional visits, five cleaners, September 21–25, 8 AM–5 PM |
+| demo-schedule | Full Schedule.jsx desktop page, ScheduleControls and WeekView | Sixteen fictional visits, three cleaners, September 21–25, 8 AM–5 PM |
 | demo-timesheets | TimesheetSettingsTab | Fictional pay-period and break settings |
 | demo-automations | AutomationRuleCard | Fictional lifecycle rules; no messages sent |
 
@@ -33,6 +33,6 @@ Original browser viewport: 1280 × 720; full-page captures with a scrollbar are 
 
 ## Desktop calendar capture
 
-The calendar uses the full unmodified Schedule.jsx page, with offline visit/job/roster responses in desktop-schedule-data.js. View-only modal dependencies are disabled. The capture shell adds a five-person color legend and an explicit fictional-data label. No customer or employee records are read or changed.
+The calendar uses the full unmodified Schedule.jsx page, with offline visit/job/roster responses in desktop-schedule-data.js. View-only modal dependencies are disabled. The capture shell adds a three-person color legend and an explicit fictional-data label. No customer or employee records are read or changed.
 
-Use a 1920 × 1000 desktop viewport, select Week and Hide Weekends, and use the date picker to select September 21–25, 2026 if needed. Scroll the calendar to 8 AM. Capture the top 1910 × 930 pixels as `.captures/desktop-schedule-full.png`, then run `node scripts/finish-desktop-calendar.mjs`. This replaces the previous stripped-down, ten-visit calendar image. The generated asset is 1840 × 910. All forty jobs finish by 5 PM; no cleaner is double-booked.
+Use a 1920 × 1000 desktop viewport, select Week and Hide Weekends, and use the date picker to select September 21–25, 2026 if needed. Scroll the calendar to 8 AM. Capture the top 1910 × 930 pixels as `.captures/desktop-schedule-full.png`, then run `node scripts/finish-desktop-calendar.mjs`. This replaces the previous stripped-down, ten-visit calendar image. The generated asset is 1840 × 910. All sixteen jobs finish by 5 PM; no cleaner is double-booked. Daily visit counts are 4, 3, 2, 5 and 2. Cleans last 3–8 hours; repeat stops for the same cleaner have a one-hour gap. Colors consistently identify the three cleaners.
