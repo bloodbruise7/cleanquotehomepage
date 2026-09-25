@@ -1,5 +1,6 @@
 // Offline responses only. These are fictional examples, never production records.
 import { business, quote, platform } from "./fixture-data";
+import { crew, scheduleVisits, scheduleJobs } from "./desktop-schedule-data";
 const disabledService = new Proxy(
   {},
   {
@@ -12,9 +13,16 @@ export const quoteService = disabledService,
   customerService = disabledService,
   businessService = disabledService,
   activityLogService = disabledService,
-  jobService = disabledService,
   opportunityService = disabledService;
+export const jobService = { byIds: async () => scheduleJobs };
+export const visitService = {
+  inRange: async () => scheduleVisits,
+  list: async () => [],
+};
+export const taskService = { inRange: async () => [] };
+export const scheduledAutomationService = disabledService;
 export const fns = {
+  getBusinessUsers: async () => ({ data: { users: crew } }),
   getPlatformSettings: async () => ({ data: { settings: platform } }),
   getPublicQuote: async () => ({ data: { business, quote } }),
   getQuoteBookingSlots: async ({ preferred_date } = {}) => ({

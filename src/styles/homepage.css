@@ -1310,7 +1310,8 @@
   border-radius: 20px;
 }
 .communications-section {
-  padding-top: 0;
+  padding-top: 64px;
+  background: white;
 }
 .communications-card {
   display: grid;

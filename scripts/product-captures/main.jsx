@@ -11,7 +11,8 @@ import { createRoot } from "react-dom/client";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import QuoteBookingSection from "@/components/quotes/QuoteBookingSection";
 import Organizer from "@/components/schedule/ScheduleOrganizerModal";
-import WeekView from "@/components/schedule/WeekView";
+import Schedule from "@/pages/Schedule";
+import { crew } from "./desktop-schedule-data";
 import EmbedForm from "@/components/embed/EmbedCalculatorForm";
 import AiConnections from "@/components/settings/AIConnectionsTab";
 import "@/index.css";
@@ -39,22 +40,7 @@ const suggestions = ["Sample home A", "Sample home B", "Sample home C"].map(
     requiredPeople: 1,
   }),
 );
-const visits = Array.from({ length: 10 }, (_, i) => ({
-  id: `visit-${i}`,
-  job_id: `job-${i}`,
-  customer_name: `Sample home ${String(i + 1).padStart(2, "0")}`,
-  scheduled_date: `2026-10-0${5 + (i % 5)}`,
-  scheduled_time: i < 5 ? "09:00" : "13:00",
-  estimated_hours: 2.5,
-  duration_hours: 2.5,
-  status: "scheduled",
-  assigned_user_ids: [i % 2 ? "demo-a" : "demo-b"],
-}));
 function App() {
-  const ref = React.useRef(null);
-  React.useEffect(() => {
-    if (screen === "schedule" && ref.current) ref.current.scrollTop = 400;
-  }, []);
   return (
     <TooltipProvider>
       <div className={`capture-shell ${screen}`}>
@@ -148,31 +134,16 @@ function App() {
           )}
           {screen === "schedule" && (
             <>
-              <h1>Your week, in one place</h1>
-              <p className="fixture-note">
-                October 5–9 · Recurring cleaning visits
-              </p>
-              <WeekView
-                currentDate={new Date("2026-10-05T12:00:00")}
-                hideWeekends
-                getVisitsForDate={(date) =>
-                  visits.filter(
-                    (v) =>
-                      v.scheduled_date ===
-                      `2026-10-${String(date.getDate()).padStart(2, "0")}`,
-                  )
-                }
-                getTasksForDate={() => []}
-                jobs={visits.map((v) => ({
-                  id: v.job_id,
-                  title: "Bi-weekly cleaning",
-                }))}
-                scrollContainerRef={ref}
-                isDragging={false}
-                onSelectVisit={noop}
-                onSelectTask={noop}
-                userColorMap={{ "demo-a": "#e0edfc", "demo-b": "#fff0d8" }}
-              />
+              <div className="crew-legend">
+                {crew.map((person) => (
+                  <span key={person.id}>
+                    <i style={{ background: person.profile_color }} />
+                    {person.profile_first_name}
+                  </span>
+                ))}
+                <em>Fictional team · September 21–25</em>
+              </div>
+              <Schedule />
             </>
           )}
           {screen === "widget" && (
