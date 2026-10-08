@@ -23,7 +23,7 @@ const prefix = home ? "" : "/";
         Log In
       </a>
       <a class="nav-trial" href={TRIAL_URL}>
-        Start Free Trial
+        <span class="trial-start">Start </span>Free Trial
       </a>
     </div>
   </nav>
@@ -88,28 +88,33 @@ const prefix = home ? "" : "/";
       font-size: 20px;
     }
     .nav-actions {
-      gap: 14px;
-      font-size: 12px;
+      gap: 8px;
+    }
+    .trial-start {
+      display: none;
+    }
+    .login-link,
+    .nav-trial {
+      padding: 11px 18px;
+      border: 1px solid #003366;
+      border-radius: 999px;
+      white-space: nowrap;
     }
     .login-link {
-      padding: 12px 0;
+      color: #003366;
     }
-    .nav-trial {
-      padding: 12px 15px;
+    .login-link:hover {
+      background: #f2f5f9;
+      text-decoration: none;
     }
   }
-  @media (max-width: 370px) {
+  @media (max-width: 350px) {
     .site-nav {
       padding: 12px 14px;
     }
-    .site-nav :global(.text-2xl) {
-      font-size: 18px;
-    }
-    .nav-actions {
-      gap: 10px;
-    }
+    .login-link,
     .nav-trial {
-      padding: 11px 12px;
+      padding: 10px 14px;
     }
   }
 </style>
