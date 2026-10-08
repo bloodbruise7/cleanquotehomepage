@@ -87,12 +87,29 @@ const prefix = home ? "" : "/";
     .site-nav :global(.text-2xl) {
       font-size: 20px;
     }
-    .nav-trial {
+    .nav-actions {
+      gap: 14px;
       font-size: 12px;
-      padding: 12px 15px;
     }
     .login-link {
-      display: none;
+      padding: 12px 0;
+    }
+    .nav-trial {
+      padding: 12px 15px;
+    }
+  }
+  @media (max-width: 370px) {
+    .site-nav {
+      padding: 12px 14px;
+    }
+    .site-nav :global(.text-2xl) {
+      font-size: 18px;
+    }
+    .nav-actions {
+      gap: 10px;
+    }
+    .nav-trial {
+      padding: 11px 12px;
     }
   }
 </style>
