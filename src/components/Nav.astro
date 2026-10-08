@@ -23,7 +23,7 @@ const prefix = home ? "" : "/";
         Log In
       </a>
       <a class="nav-trial" href={TRIAL_URL}>
-        Start Free Trial
+        Free Trial
       </a>
     </div>
   </nav>
@@ -87,12 +87,31 @@ const prefix = home ? "" : "/";
     .site-nav :global(.text-2xl) {
       font-size: 20px;
     }
+    .nav-actions {
+      gap: 8px;
+    }
+    .login-link,
     .nav-trial {
-      font-size: 12px;
-      padding: 12px 15px;
+      padding: 11px 18px;
+      border: 1px solid #003366;
+      border-radius: 999px;
+      white-space: nowrap;
     }
     .login-link {
-      display: none;
+      color: #003366;
+    }
+    .login-link:hover {
+      background: #f2f5f9;
+      text-decoration: none;
+    }
+  }
+  @media (max-width: 350px) {
+    .site-nav {
+      padding: 12px 14px;
+    }
+    .login-link,
+    .nav-trial {
+      padding: 10px 14px;
     }
   }
 </style>
